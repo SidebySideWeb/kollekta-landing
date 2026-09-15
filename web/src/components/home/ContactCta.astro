@@ -10,7 +10,7 @@ const { home } = Astro.props;
 ---
 
 <section id="contact" class="relative pt-20 pb-28 md:pt-28 md:pb-36 bg-deep-slate text-white">
-  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
+  <div class="reveal max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
     <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3">
       {home.contactTitle ?? ''}
     </h2>
@@ -21,7 +21,7 @@ const { home } = Astro.props;
     }
   </div>
 
-  <div class="max-w-[640px] mx-auto px-4">
+  <div class="reveal max-w-[640px] mx-auto px-4">
     <InterestForm
       successTitle={home.contactSuccessTitle}
       successDescription={home.contactSuccessDescription}

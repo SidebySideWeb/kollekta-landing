@@ -9,7 +9,7 @@ const { home } = Astro.props;
 ---
 
 <section class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
-  <div class="text-center max-w-2xl mx-auto mb-16">
+  <div class="reveal text-center max-w-2xl mx-auto mb-16">
     {
       home.securityEyebrow && (
         <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">
@@ -22,10 +22,10 @@ const { home } = Astro.props;
     </h2>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div class="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-6">
     {
       (home.securityItems ?? []).map((item) => (
-        <div class="bg-white rounded-xl p-6 border border-slate-hairline shadow-sm flex items-start gap-4">
+        <div class="reveal card-lift bg-white rounded-xl p-6 border border-slate-hairline shadow-sm flex items-start gap-4">
           <div class="w-10 h-10 rounded-lg bg-blue-50 text-cobalt-blue flex items-center justify-center flex-shrink-0">
             <span class="material-symbols-outlined text-xl">{item.icon ?? 'shield'}</span>
           </div>

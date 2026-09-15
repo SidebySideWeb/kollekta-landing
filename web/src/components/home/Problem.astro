@@ -16,7 +16,7 @@ const footerToneClass: Record<string, string> = {
 ---
 
 <section class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
-  <div class="text-center max-w-2xl mx-auto mb-16">
+  <div class="reveal text-center max-w-2xl mx-auto mb-16">
     {
       home.problemEyebrow && (
         <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">
@@ -29,10 +29,10 @@ const footerToneClass: Record<string, string> = {
     </h2>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <div class="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-6">
     {
       (home.problemCards ?? []).map((card) => (
-        <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-hairline shadow-card-rest hover:shadow-card-hover transition-all flex flex-col justify-between group">
+        <div class="reveal card-lift bg-white rounded-2xl p-6 sm:p-7 border border-slate-hairline shadow-card-rest flex flex-col justify-between group">
           <div>
             <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-hairline flex items-center justify-center text-deep-slate mb-5 group-hover:border-cobalt-blue/30 transition-colors">
               <span class="material-symbols-outlined text-2xl text-cobalt-blue">{card.icon ?? 'help'}</span>

@@ -16,7 +16,7 @@ const imgLook04 =
 ---
 
 <section id="features" class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
-  <div class="text-center max-w-2xl mx-auto mb-16">
+  <div class="reveal text-center max-w-2xl mx-auto mb-16">
     {
       home.featuresEyebrow && (
         <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">
@@ -29,10 +29,10 @@ const imgLook04 =
     </h2>
   </div>
 
-  <div class="flex flex-col gap-8">
+  <div class="reveal-stagger flex flex-col gap-8">
     {
       (home.features ?? []).map((feature) => (
-        <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-slate-hairline shadow-card-rest hover:shadow-card-hover transition-all">
+        <div class="reveal card-lift bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-slate-hairline shadow-card-rest">
           {
             feature.visual === 'none' ? (
               <div class="max-w-3xl">

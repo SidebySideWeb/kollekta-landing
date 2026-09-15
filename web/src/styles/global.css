@@ -34,18 +34,214 @@ body {
   vertical-align: middle;
 }
 
+::selection {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+/* ——— Sticky header ——— */
+#site-header {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(0);
+  border-bottom-color: transparent;
+  box-shadow: none;
+  transition:
+    background-color 200ms ease,
+    backdrop-filter 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+#site-header.is-scrolled {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: #e2e8f0;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+#site-header .header-inner {
+  height: 4.25rem;
+  transition: height 200ms ease;
+}
+
+#site-header.is-scrolled .header-inner {
+  height: 3.5rem;
+}
+
+/* ——— Hero stagger ——— */
+.hero-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.hero-enter.is-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 500ms ease,
+    transform 500ms ease;
+}
+
+.hero-enter-delay-1 {
+  transition-delay: 0ms;
+}
+.hero-enter-delay-2 {
+  transition-delay: 90ms;
+}
+.hero-enter-delay-3 {
+  transition-delay: 180ms;
+}
+.hero-enter-delay-4 {
+  transition-delay: 270ms;
+}
+.hero-enter-delay-5 {
+  transition-delay: 360ms;
+}
+
+/* ——— Mockup float ——— */
 @keyframes floatGentle {
   0%,
   100% {
-    transform: translateY(0px) rotate(0.4deg);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-8px) rotate(-0.2deg);
+    transform: translateY(-6px);
   }
 }
 
 .floating-hero {
-  animation: floatGentle 7s ease-in-out infinite;
+  animation: floatGentle 5.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-parallax-wrap {
+  will-change: transform;
+}
+
+/* ——— Scroll reveal ——— */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 550ms ease,
+    transform 550ms ease;
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger > .reveal:nth-child(1) {
+  transition-delay: 0ms;
+}
+.reveal-stagger > .reveal:nth-child(2) {
+  transition-delay: 90ms;
+}
+.reveal-stagger > .reveal:nth-child(3) {
+  transition-delay: 180ms;
+}
+.reveal-stagger > .reveal:nth-child(4) {
+  transition-delay: 270ms;
+}
+.reveal-stagger > .reveal:nth-child(5) {
+  transition-delay: 360ms;
+}
+
+/* ——— Steps connecting line ——— */
+.steps-line {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 900ms ease-out;
+}
+
+.steps-line.is-drawn {
+  transform: scaleX(1);
+}
+
+/* ——— Card hover lift ——— */
+.card-lift {
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.pricing-pro-glow {
+  box-shadow:
+    var(--shadow-pro-elevated),
+    0 0 0 1px rgba(37, 99, 235, 0.35),
+    0 0 24px rgba(37, 99, 235, 0.18);
+}
+
+.pricing-pro-glow:hover {
+  box-shadow:
+    var(--shadow-pro-elevated),
+    0 0 0 1px rgba(37, 99, 235, 0.45),
+    0 0 32px rgba(37, 99, 235, 0.22);
+}
+
+/* ——— Buttons ——— */
+.btn-micro {
+  transition:
+    transform 150ms ease,
+    opacity 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease,
+    border-color 150ms ease;
+}
+
+.btn-micro:hover {
+  transform: scale(1.02);
+}
+
+.btn-micro:active {
+  transform: scale(0.98);
+}
+
+/* ——— Form fields ——— */
+.form-field {
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 0 0 0 rgba(2, 132, 199, 0);
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.form-field:focus {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.3);
+  outline: none;
+}
+
+/* ——— Form loading / success ——— */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-spinner {
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 9999px;
+  animation: spin 0.7s linear infinite;
+}
+
+.form-panel {
+  transition: opacity 280ms ease;
+}
+
+.form-panel.is-fading {
+  opacity: 0;
 }
 
 @keyframes checkAnim {
@@ -59,11 +255,58 @@ body {
 
 .check-draw {
   stroke-dasharray: 50;
-  stroke-dashoffset: 0;
-  animation: checkAnim 1.2s ease-out forwards;
+  stroke-dashoffset: 50;
 }
 
-::selection {
-  background-color: #2563eb;
-  color: #ffffff;
+.check-draw.is-drawn {
+  animation: checkAnim 500ms ease-out forwards;
+}
+
+/* ——— Reduced motion ——— */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .floating-hero {
+    animation: none !important;
+  }
+
+  .hero-parallax-wrap {
+    transform: none !important;
+  }
+
+  .hero-enter {
+    opacity: 1;
+    transform: none;
+    transition-duration: 200ms;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition-duration: 200ms;
+  }
+
+  .steps-line {
+    transform: scaleX(1);
+    transition: none;
+  }
+
+  .card-lift:hover,
+  .pricing-pro-glow:hover,
+  .btn-micro:hover,
+  .btn-micro:active {
+    transform: none;
+  }
+
+  .check-draw {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .btn-spinner {
+    animation: none;
+    border-color: #fff;
+  }
 }
