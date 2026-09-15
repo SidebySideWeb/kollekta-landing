@@ -1,0 +1,212 @@
+---
+import type { HomePage } from '../../lib/types';
+
+interface Props {
+  home: HomePage;
+}
+
+const { home } = Astro.props;
+
+const imgLook01 =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuCNjcLB1Xq2oyAAmETGmEhpPCCe17TZp8SelAtoomNkwk6WE_GNAWK1opgw8t_eoshBwZ8Qwy8iknzXnC85uCvlqboZrzX_wtHCQZFyJNQwgw4i_llbeMI-mXNZS0NtuRLcrI_dWBsKpvz0wx-qcQC47DsraiRMenM6cNC6FLqubk8GFLm9TbvwKPvJVggDgo_eWqhSTV63V0xQkn367HroWavA1Ig7x0DIFIf6hGtKHHy3biZO8ym9fg';
+const imgLook02 =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuC0rfd_o_UjQzD3CtgANT_bZNz5W-b0SxNnGuNGi3KT0KPQ60nX_v2TZPl7GhoxMLyAqPcnXzjLzv6kT1_ycHgR75nrgDaI0_tFSUf_GubkeLjIOaGx2rPUhAlefcto325BgfCIsXqBCpcpuH8OGsUl9q58U7WN4zPtRv3g1xJ9g8-OYORpyBqtcZupxXL-Tj27rW2T4FUsXpdwl3kNNJrARVbBOjJRL6LafnfHpU7TbBc3oDChu5iciQ';
+const imgLook04 =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuB2ul_bqH1DHmZdQvkUQike4DoP4nWMT2ejr6MghHOfc4LKQ-zlnUN4JLejrP4jJmfuRBRIMjVy8cY3DLTLLzH6d-uSxj28hH7FkJ-ENo-PQ8iytTQ5U-300c8zIG3U7wIqMw4P2s_retK2u3dOS_nli6io5gB-OrIvy3cxHgOYAdSOEykqlQHgL8QME82sn8vgZULWyrO5HxZSQRrCl64utVKRjj0PPEc_CwmzqQhxbdEetsNOsp_jWA';
+---
+
+<section id="features" class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
+  <div class="text-center max-w-2xl mx-auto mb-16">
+    {
+      home.featuresEyebrow && (
+        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">
+          {home.featuresEyebrow}
+        </span>
+      )
+    }
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight">
+      {home.featuresTitle ?? ''}
+    </h2>
+  </div>
+
+  <div class="flex flex-col gap-8">
+    {
+      (home.features ?? []).map((feature) => (
+        <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-slate-hairline shadow-card-rest hover:shadow-card-hover transition-all">
+          {
+            feature.visual === 'none' ? (
+              <div class="max-w-3xl">
+                {
+                  feature.code && feature.category && (
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-deep-slate text-xs font-mono font-bold mb-4">
+                      <span>{feature.code}</span> • {feature.category}
+                    </div>
+                  )
+                }
+                <h3 class="text-xl sm:text-2xl font-bold text-deep-slate mb-3">{feature.title ?? ''}</h3>
+                <p class="text-sm sm:text-base text-body-ink leading-relaxed">{feature.description ?? ''}</p>
+              </div>
+            ) : (
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7">
+                  {
+                    feature.badge ? (
+                      <div class="flex items-center gap-2 mb-4">
+                        <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-100 text-deep-slate text-xs font-mono font-bold">
+                          <span>{feature.code ?? ''}</span> • {feature.category ?? ''}
+                        </span>
+                        <span class="px-2 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-soon text-[11px] font-bold">
+                          {feature.badge}
+                        </span>
+                      </div>
+                    ) : (
+                      feature.code &&
+                      feature.category && (
+                        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-deep-slate text-xs font-mono font-bold mb-4">
+                          <span>{feature.code}</span> • {feature.category}
+                        </div>
+                      )
+                    )
+                  }
+                  <h3 class="text-xl sm:text-2xl font-bold text-deep-slate mb-3">{feature.title ?? ''}</h3>
+                  <p class="text-sm sm:text-base text-body-ink leading-relaxed mb-4">{feature.description ?? ''}</p>
+                </div>
+
+                <div class="lg:col-span-5 bg-studio-mist rounded-xl p-5 border border-slate-hairline">
+                  {
+                    feature.visual === 'tags' && (
+                      <>
+                        <span class="text-[11px] font-bold text-muted-caption uppercase tracking-wider block mb-3">
+                          Στοχευμένη πρόσβαση (Reach)
+                        </span>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                          <span class="px-3 py-1.5 rounded-lg bg-cobalt-blue text-white text-xs font-semibold flex items-center gap-1 shadow-sm">
+                            <span class="material-symbols-outlined text-sm">check</span> Χονδρική (180)
+                          </span>
+                          <span class="px-3 py-1.5 rounded-lg bg-white border border-slate-hairline text-deep-slate text-xs font-medium">
+                            VIP (24)
+                          </span>
+                          <span class="px-3 py-1.5 rounded-lg bg-cobalt-blue text-white text-xs font-semibold flex items-center gap-1 shadow-sm">
+                            <span class="material-symbols-outlined text-sm">check</span> Εξωτερικό (46)
+                          </span>
+                        </div>
+                        <div class="bg-white rounded-lg p-3 border border-slate-hairline flex items-center justify-between">
+                          <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sky-cyan text-lg">group</span>
+                            <span class="text-xs font-medium text-body-ink">Εκτιμώμενη απήχηση:</span>
+                          </div>
+                          <span class="text-xs font-bold font-mono bg-blue-50 text-cobalt-blue px-2 py-0.5 rounded">
+                            reach: 84 πελάτες
+                          </span>
+                        </div>
+                      </>
+                    )
+                  }
+
+                  {
+                    feature.visual === 'orders' && (
+                      <>
+                        <span class="text-[11px] font-bold text-muted-caption uppercase tracking-wider block mb-3">
+                          Κατάσταση πλακιδίων (Order Permission)
+                        </span>
+                        <div class="grid grid-cols-2 gap-3">
+                          <div class="bg-white rounded-lg border border-slate-hairline p-2 flex flex-col gap-1.5 shadow-sm">
+                            <div class="relative aspect-square rounded bg-slate-100 overflow-hidden">
+                              <img src={imgLook01} alt="" class="w-full h-full object-cover" loading="lazy" />
+                              <span class="absolute top-1 right-1 px-1.5 py-0.5 rounded bg-emerald-600 text-white text-[9px] font-bold font-mono">
+                                Στην παραγγελία
+                              </span>
+                            </div>
+                            <div class="flex items-center justify-between text-[10px]">
+                              <span class="font-mono text-deep-slate font-bold">SUIT-101</span>
+                              <span class="text-cobalt-blue font-semibold">Λήψη ✓</span>
+                            </div>
+                          </div>
+                          <div class="bg-white rounded-lg border border-slate-hairline p-2 flex flex-col gap-1.5 opacity-75 shadow-sm">
+                            <div class="relative aspect-square rounded bg-slate-200 overflow-hidden">
+                              <img src={imgLook02} alt="" class="w-full h-full object-cover grayscale" loading="lazy" />
+                              <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-[1px] flex flex-col items-center justify-center text-white">
+                                <span class="material-symbols-outlined text-xl">lock</span>
+                                <span class="text-[9px] font-semibold mt-1">Μόνο προεπισκόπηση</span>
+                              </div>
+                            </div>
+                            <div class="flex items-center justify-between text-[10px]">
+                              <span class="font-mono text-muted-caption">KNT-550</span>
+                              <span class="text-muted-caption">Εκτός παραγγελίας</span>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    )
+                  }
+
+                  {
+                    feature.visual === 'auth' && (
+                      <div class="max-w-[280px] mx-auto bg-white rounded-xl p-4 border border-slate-hairline shadow-sm">
+                        <span class="text-[10px] font-mono text-muted-caption uppercase block mb-2 text-center">
+                          B2B Quick Auth
+                        </span>
+                        <div class="space-y-2 mb-3">
+                          <div>
+                            <span class="text-[10px] text-body-ink font-semibold">Κινητό τηλέφωνο</span>
+                            <div class="px-2.5 py-1.5 rounded border border-slate-200 text-xs font-mono bg-slate-50 text-deep-slate">
+                              694 000 0001
+                            </div>
+                          </div>
+                          <div>
+                            <span class="text-[10px] text-body-ink font-semibold">Κωδικός πρόσβασης</span>
+                            <div class="px-2.5 py-1.5 rounded border border-slate-200 text-xs font-mono bg-slate-50 text-deep-slate">
+                              KLK-8821
+                            </div>
+                          </div>
+                        </div>
+                        <button type="button" class="w-full py-1.5 rounded bg-cobalt-blue text-white text-xs font-bold shadow-sm">
+                          Σύνδεση →
+                        </button>
+                      </div>
+                    )
+                  }
+
+                  {
+                    feature.visual === 'resize' && (
+                      <>
+                        <span class="text-[11px] font-bold text-muted-caption uppercase tracking-wider block mb-3">
+                          Αυτόματη παραγωγή προφίλ
+                        </span>
+                        <div class="flex items-center gap-3 mb-4 bg-white p-3 rounded-lg border border-slate-hairline">
+                          <img src={imgLook04} alt="" class="w-14 h-14 rounded object-cover border border-slate-200" loading="lazy" />
+                          <div>
+                            <span class="text-xs font-bold text-deep-slate block">ACC-1045.raw</span>
+                            <span class="text-[11px] text-muted-caption font-mono">Master Ingest: 28.4 MB TIFF</span>
+                          </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                          <div class="bg-white p-2 rounded border border-slate-hairline text-center">
+                            <span class="text-[10px] font-semibold text-deep-slate block">Εκτύπωση</span>
+                            <span class="text-[10px] text-cobalt-blue font-mono font-bold">18.2 MB • 300 DPI</span>
+                          </div>
+                          <div class="bg-white p-2 rounded border border-slate-hairline text-center">
+                            <span class="text-[10px] font-semibold text-deep-slate block">Eshop</span>
+                            <span class="text-[10px] text-cobalt-blue font-mono font-bold">850 KB • WebP</span>
+                          </div>
+                          <div class="bg-white p-2 rounded border border-slate-hairline text-center">
+                            <span class="text-[10px] font-semibold text-deep-slate block">Grid</span>
+                            <span class="text-[10px] text-cobalt-blue font-mono font-bold">240 KB • 1200px</span>
+                          </div>
+                          <div class="bg-white p-2 rounded border border-slate-hairline text-center">
+                            <span class="text-[10px] font-semibold text-deep-slate block">Thumb</span>
+                            <span class="text-[10px] text-cobalt-blue font-mono font-bold">45 KB • 400px</span>
+                          </div>
+                        </div>
+                      </>
+                    )
+                  }
+                </div>
+              </div>
+            )
+          }
+        </div>
+      ))
+    }
+  </div>
+</section>

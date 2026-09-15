@@ -1,0 +1,18 @@
+---
+interface Props {
+  class?: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { class: className = '', size = 'md' } = Astro.props;
+const sizeClass = size === 'sm' ? 'w-8 h-8 p-1.5' : size === 'lg' ? 'w-10 h-10 p-2' : 'w-9 h-9 p-1.5';
+---
+
+<div class={`rounded-xl bg-deep-slate flex items-center justify-center shadow-sm ${sizeClass} ${className}`}>
+  <svg viewBox="0 0 48 48" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="6" y="8" width="8" height="32" rx="2" fill="#FFFFFF"></rect>
+    <path d="M22 10L36 24V14C36 11.7909 34.2091 10 32 10H22Z" fill="#2563EB"></path>
+    <path d="M22 28L36 40H26C23.7909 40 22 38.2091 22 36V28Z" fill="#38BDF8"></path>
+    <circle cx="28" cy="24" r="3" fill="#FFFFFF"></circle>
+  </svg>
+</div>

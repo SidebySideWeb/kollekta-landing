@@ -1,0 +1,85 @@
+---
+import BrandMark from './BrandMark.astro';
+import type { SiteSettings } from '../lib/types';
+
+interface Props {
+  settings: SiteSettings;
+  variant?: 'default' | 'minimal';
+  showBackLink?: boolean;
+}
+
+const { settings, variant = 'default', showBackLink = false } = Astro.props;
+const navLinks = settings.navLinks ?? [];
+---
+
+<header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-hairline transition-all duration-300 shadow-sm">
+  <div class={`mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between ${variant === 'minimal' ? 'max-w-7xl' : 'max-w-[1200px]'}`}>
+    <a href="/" class="flex items-center gap-3 group">
+      <BrandMark size="md" class="group-hover:bg-slate-900 transition-colors" />
+      <div class="flex flex-col">
+        <span class="text-lg font-bold tracking-tight text-deep-slate leading-none">{settings.siteName ?? 'Kollekta'}</span>
+        <span class="text-[9px] font-semibold tracking-[0.18em] text-muted-caption uppercase mt-0.5">{settings.tagline ?? 'B2B MEDIA SUITE'}</span>
+      </div>
+    </a>
+
+    {variant === 'default' && (
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-body-ink">
+        {navLinks.map((link) => (
+          <a href={link.href} class="hover:text-cobalt-blue transition-colors">{link.label}</a>
+        ))}
+      </nav>
+    )}
+
+    <div class="flex items-center gap-3">
+      {showBackLink && (
+        <a href="/" class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-muted-caption hover:text-deep-slate transition-colors">
+          <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+          Επιστροφή στην αρχική
+        </a>
+      )}
+      {variant === 'minimal' ? (
+        <a href="/" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold text-white bg-cobalt-blue hover:bg-blue-700 rounded-lg transition-all shadow-sm">
+          <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+          Επιστροφή
+        </a>
+      ) : (
+        <a
+          href={settings.headerCtaHref ?? '#contact'}
+          class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-cobalt-blue hover:bg-blue-700 text-white text-sm font-semibold shadow-sm hover:shadow transition-all active:scale-[0.98]"
+        >
+          {settings.headerCtaLabel ?? 'Εκδήλωσε ενδιαφέρον'}
+        </a>
+      )}
+      <button
+        type="button"
+        id="mobile-menu-btn"
+        aria-label="Μενού"
+        aria-expanded="false"
+        class="md:hidden p-2 rounded-lg text-body-ink hover:bg-slate-100 transition-colors"
+      >
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-hairline bg-white px-4 py-4 space-y-3">
+    {navLinks.map((link) => (
+      <a href={link.href} class="block text-sm font-medium text-body-ink hover:text-cobalt-blue">{link.label}</a>
+    ))}
+    <a
+      href={settings.headerCtaHref ?? '#contact'}
+      class="inline-flex w-full items-center justify-center px-4 py-2.5 rounded-lg bg-cobalt-blue text-white text-sm font-semibold"
+    >
+      {settings.headerCtaLabel ?? 'Εκδήλωσε ενδιαφέρον'}
+    </a>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(open));
+  });
+</script>

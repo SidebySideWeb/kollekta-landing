@@ -1,0 +1,87 @@
+---
+import type { SiteSettings } from '../lib/types';
+
+interface Props {
+  settings: SiteSettings;
+  variant?: 'dark' | 'light';
+}
+
+const { settings, variant = 'dark' } = Astro.props;
+const productLinks = settings.productLinks ?? [];
+const companyLinks = settings.companyLinks ?? [];
+const legalLinks = settings.legalLinks ?? [];
+---
+
+{variant === 'light' ? (
+  <footer class="w-full border-t border-slate-hairline bg-white py-6 px-6">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-caption">
+      <div>{settings.copyright ?? '© 2026 Kollekta. Με επιφύλαξη κάθε δικαιώματος.'}</div>
+      <div class="flex items-center gap-6">
+        {legalLinks.map((link) => (
+          <a href={link.href} class="hover:text-deep-slate transition-colors">{link.label}</a>
+        ))}
+        <span class="text-slate-300">•</span>
+        <span class="font-medium text-body-ink">{settings.studioCredit ?? 'Product by Side by Side Web Studio'}</span>
+      </div>
+    </div>
+  </footer>
+) : (
+  <footer class="w-full bg-deep-slate border-t border-slate-800 text-slate-400 text-sm py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
+      <div class="md:col-span-5 flex flex-col items-start">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center p-1.5 border border-slate-700">
+            <svg viewBox="0 0 48 48" class="w-full h-full" fill="none" aria-hidden="true">
+              <rect x="6" y="8" width="8" height="32" rx="2" fill="#FFFFFF"></rect>
+              <path d="M22 10L36 24V14C36 11.7909 34.2091 10 32 10H22Z" fill="#2563EB"></path>
+              <path d="M22 28L36 40H26C23.7909 40 22 38.2091 22 36V28Z" fill="#38BDF8"></path>
+              <circle cx="28" cy="24" r="3" fill="#FFFFFF"></circle>
+            </svg>
+          </div>
+          <span class="text-lg font-bold text-white tracking-tight">{settings.siteName ?? 'Kollekta'}</span>
+        </div>
+        <span class="text-[10px] font-mono tracking-[0.2em] text-slate-400 uppercase mb-4 block">{settings.tagline ?? 'B2B MEDIA SUITE'}</span>
+        <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+          {settings.footerDescription}
+        </p>
+      </div>
+
+      <div class="md:col-span-2 sm:col-span-4">
+        <span class="text-xs font-bold text-white uppercase tracking-wider block mb-4">Προϊόν</span>
+        <ul class="space-y-2.5 text-xs">
+          {productLinks.map((link) => (
+            <li><a href={link.href} class="hover:text-white transition-colors">{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="md:col-span-2 sm:col-span-4">
+        <span class="text-xs font-bold text-white uppercase tracking-wider block mb-4">Εταιρεία</span>
+        <ul class="space-y-2.5 text-xs">
+          {companyLinks.map((link) => (
+            <li><a href={link.href} class="hover:text-white transition-colors">{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="md:col-span-3 sm:col-span-4">
+        <span class="text-xs font-bold text-white uppercase tracking-wider block mb-4">Νομικά</span>
+        <ul class="space-y-2.5 text-xs">
+          {legalLinks.map((link) => (
+            <li><a href={link.href} class="hover:text-white transition-colors">{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="max-w-[1200px] mx-auto pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+      <p>{settings.copyright ?? '© 2026 Kollekta. Με επιφύλαξη κάθε δικαιώματος.'}</p>
+      <div class="flex items-center gap-1.5">
+        <span>Product by</span>
+        <a href={settings.studioCreditHref ?? '#'} class="font-medium text-slate-400 hover:text-white transition-colors">
+          Side by Side Web Studio
+        </a>
+      </div>
+    </div>
+  </footer>
+)}

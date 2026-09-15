@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getNotFoundPage, getSiteSettings } from '../lib/queries';
+import { fetchWithFallback } from '../lib/fetch-with-fallback';
+import { defaultNotFoundPage, defaultSiteSettings } from '../lib/fallbacks';
+
+const [settingsRaw, pageRaw] = await Promise.all([
+  fetchWithFallback(() => getSiteSettings(), null, 'siteSettings'),
+  fetchWithFallback(() => getNotFoundPage(), null, 'notFoundPage'),
+]);
+
+const settings = { ...defaultSiteSettings, ...settingsRaw };
+const page = { ...defaultNotFoundPage, ...pageRaw };
+
+Astro.response.status = 404;
+
+const title = page.seo?.title ?? '404 — Η σελίδα δεν βρέθηκε | Kollekta';
+const description = page.seo?.description ?? page.description ?? '';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  settings={settings}
+  headerVariant="minimal"
+  footerVariant="light"
+  noIndex={true}
+>
+  <main class="flex-grow flex items-center justify-center px-6 py-16">
+    <div class="max-w-2xl w-full flex flex-col items-center text-center">
+      <div class="relative mb-8">
+        <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-2xl bg-white border border-slate-hairline shadow-sm flex flex-col items-center justify-center p-6 relative overflow-hidden">
+          <div class="absolute top-3 left-3 w-3 h-3 border-t-2 border-l-2 border-slate-hairline"></div>
+          <div class="absolute top-3 right-3 w-3 h-3 border-t-2 border-r-2 border-slate-hairline"></div>
+          <div class="absolute bottom-3 left-3 w-3 h-3 border-b-2 border-l-2 border-slate-hairline"></div>
+          <div class="absolute bottom-3 right-3 w-3 h-3 border-b-2 border-r-2 border-slate-hairline"></div>
+
+          <div class="w-20 h-28 sm:w-24 sm:h-32 rounded-lg bg-studio-mist border border-dashed border-slate-hairline flex flex-col items-center justify-center relative mb-2">
+            <span class="material-symbols-outlined text-[36px] text-muted-caption/60">image_not_supported</span>
+            <div class="absolute bottom-2 inset-x-2 h-1.5 bg-slate-hairline/60 rounded-full"></div>
+          </div>
+
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-studio-mist border border-slate-hairline text-[11px] font-mono text-muted-caption">
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-cyan"></span>
+            {page.statusTag ?? 'ERR_ASSET_NOT_FOUND'}
+          </div>
+        </div>
+
+        <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-deep-slate text-white px-4 py-1 rounded-full font-mono text-xs font-semibold tracking-wider shadow-md">
+          {page.errorCode ?? 'HTTP 404'}
+        </div>
+      </div>
+
+      {
+        page.badge && (
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-cobalt-blue text-xs font-semibold uppercase tracking-wider mb-4">
+            <span>{page.badge}</span>
+          </div>
+        )
+      }
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-deep-slate tracking-tight mb-3">{page.title}</h1>
+      <p class="text-body-ink text-base max-w-lg mb-8 leading-relaxed">{page.description}</p>
+
+      <div class="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+        <a
+          href={page.primaryCtaHref ?? '/'}
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-cobalt-blue hover:bg-blue-700 rounded-lg transition-all shadow-sm"
+        >
+          <span class="material-symbols-outlined text-[18px]">home</span>
+          {page.primaryCtaLabel ?? 'Επιστροφή στην Αρχική'}
+        </a>
+        <a
+          href={page.secondaryCtaHref ?? '/#contact'}
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold text-deep-slate bg-white hover:bg-slate-50 border border-slate-hairline rounded-lg transition-all shadow-sm"
+        >
+          <span class="material-symbols-outlined text-[18px]">lock</span>
+          {page.secondaryCtaLabel ?? 'Σύνδεση στο Showroom'}
+        </a>
+      </div>
+
+      <div class="mt-14 w-full grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+        {
+          (page.helpLinks ?? []).map((link) => (
+            <a
+              href={link.href ?? '/'}
+              class="p-4 rounded-xl bg-white border border-slate-hairline hover:border-slate-300 transition-all shadow-sm group"
+            >
+              <div class="flex items-center gap-2.5 mb-1.5">
+                {link.icon && (
+                  <span class="material-symbols-outlined text-cobalt-blue text-[20px]">{link.icon}</span>
+                )}
+                <span class="text-xs font-bold text-deep-slate group-hover:text-cobalt-blue transition-colors">
+                  {link.title}
+                </span>
+              </div>
+              <p class="text-[12px] text-muted-caption leading-relaxed">{link.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</BaseLayout>

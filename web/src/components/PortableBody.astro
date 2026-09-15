@@ -1,0 +1,85 @@
+---
+import type { PortableBlock } from '../lib/types';
+
+interface Props {
+  blocks?: PortableBlock[];
+}
+
+const { blocks = [] } = Astro.props;
+
+type Child = { text?: string; marks?: string[] };
+
+function blockHtml(block: PortableBlock): string {
+  const children = (block as { children?: Child[] }).children;
+  if (!Array.isArray(children)) return '';
+  return children
+    .map((child) => {
+      let text = (child.text ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      if (child.marks?.includes('strong')) text = `<strong>${text}</strong>`;
+      if (child.marks?.includes('em')) text = `<em>${text}</em>`;
+      return text;
+    })
+    .join('');
+}
+
+type RenderItem =
+  | { kind: 'block'; block: PortableBlock }
+  | { kind: 'list'; items: PortableBlock[] };
+
+const items: RenderItem[] = [];
+for (const block of blocks) {
+  if (block._type === 'block' && (block as { listItem?: string }).listItem === 'bullet') {
+    const last = items[items.length - 1];
+    if (last?.kind === 'list') last.items.push(block);
+    else items.push({ kind: 'list', items: [block] });
+  } else {
+    items.push({ kind: 'block', block });
+  }
+}
+---
+
+{
+  items.map((item) => {
+    if (item.kind === 'list') {
+      return (
+        <ul class="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-body-ink my-2">
+          {item.items.map((li) => (
+            <li set:html={blockHtml(li)} />
+          ))}
+        </ul>
+      );
+    }
+
+    const block = item.block;
+    if (block._type === 'contentCallout') {
+      return (
+        <div class="p-3.5 rounded-lg bg-studio-mist border-l-4 border-cobalt-blue text-xs text-body-ink font-medium my-3">
+          {(block as { text?: string }).text}
+        </div>
+      );
+    }
+
+    if (block._type === 'contentInfoGrid') {
+      const gridItems = (block as { items?: { title?: string; text?: string }[] }).items ?? [];
+      return (
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 my-3">
+          {gridItems.map((cell) => (
+            <div class="p-3.5 rounded-lg bg-studio-mist border border-slate-hairline">
+              <span class="text-xs font-bold text-deep-slate block mb-1">{cell.title}</span>
+              <p class="text-xs text-muted-caption">{cell.text}</p>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    if (block._type === 'block') {
+      return <p class="text-sm leading-relaxed text-body-ink" set:html={blockHtml(block)} />;
+    }
+
+    return null;
+  })
+}

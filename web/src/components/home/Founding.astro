@@ -1,0 +1,29 @@
+---
+import type { HomePage } from '../../lib/types';
+
+interface Props {
+  home: HomePage;
+}
+
+const { home } = Astro.props;
+---
+
+<section class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
+  <div class="text-center max-w-2xl mx-auto">
+    {
+      home.foundingEyebrow && (
+        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">
+          {home.foundingEyebrow}
+        </span>
+      )
+    }
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight mb-4">
+      {home.foundingTitle ?? ''}
+    </h2>
+    {
+      home.foundingDescription && (
+        <p class="text-sm sm:text-base text-body-ink leading-relaxed">{home.foundingDescription}</p>
+      )
+    }
+  </div>
+</section>

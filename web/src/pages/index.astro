@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import Problem from '../components/home/Problem.astro';
+import Solution from '../components/home/Solution.astro';
+import Features from '../components/home/Features.astro';
+import StatBand from '../components/home/StatBand.astro';
+import WhiteLabel from '../components/home/WhiteLabel.astro';
+import Security from '../components/home/Security.astro';
+import Pricing from '../components/home/Pricing.astro';
+import Founding from '../components/home/Founding.astro';
+import ContactCta from '../components/home/ContactCta.astro';
+import { getMarketingBundle } from '../lib/queries';
+import { fetchWithFallback } from '../lib/fetch-with-fallback';
+import { defaultHomePage, defaultSiteSettings } from '../lib/fallbacks';
+
+const bundle = await fetchWithFallback(
+  () => getMarketingBundle(),
+  { siteSettings: null, homePage: null },
+  'marketingBundle',
+);
+
+const settings = { ...defaultSiteSettings, ...bundle.siteSettings };
+const home = { ...defaultHomePage, ...bundle.homePage };
+
+const title =
+  home.seo?.title ?? 'Kollekta — B2B Media Suite για Επιχειρήσεις Χονδρικής Μόδας';
+const description =
+  home.seo?.description ??
+  'Ανέβασε τη συλλογή μία φορά. Κάθε πελάτης σου μπαίνει από το κινητό, βλέπει ό,τι του αναλογεί και κατεβάζει στο σωστό μέγεθος.';
+---
+
+<BaseLayout title={title} description={description} settings={settings} noIndex={home.seo?.noIndex}>
+  <main class="w-full overflow-hidden flex-grow">
+    <Hero home={home} />
+    <Problem home={home} />
+    <Solution home={home} />
+    <Features home={home} />
+    <StatBand home={home} />
+    <WhiteLabel home={home} />
+    <Security home={home} />
+    <Pricing home={home} />
+    <Founding home={home} />
+    <ContactCta home={home} />
+  </main>
+</BaseLayout>

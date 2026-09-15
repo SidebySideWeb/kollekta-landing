@@ -1,0 +1,1085 @@
+<!DOCTYPE html><html lang="el" class="scroll-smooth" style=""><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kollekta — B2B Media Suite για Επιχειρήσεις Χονδρικής Μόδας</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'deep-slate': '#0F172A',
+            'cobalt-blue': '#2563EB',
+            'sky-cyan': '#0284C7',
+            'studio-mist': '#F8FAFC',
+            'slate-hairline': '#E2E8F0',
+            'muted-caption': '#64748B',
+            'body-ink': '#334155',
+            'amber-soon': '#F59E0B'
+          },
+          fontFamily: {
+            sans: ['"Public Sans"', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          boxShadow: {
+            'card-rest': '0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03)',
+            'card-hover': '0 12px 24px -4px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.04)',
+            'pro-elevated': '0 20px 35px -8px rgba(37, 99, 235, 0.18), 0 8px 16px -4px rgba(15, 23, 42, 0.06)',
+            'floating-mockup': '0 25px 50px -12px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(226, 232, 240, 0.8)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes floatGentle {
+      0%, 100% { transform: translateY(0px) rotate(0.4deg); }
+      50% { transform: translateY(-8px) rotate(-0.2deg); }
+    }
+    .floating-hero {
+      animation: floatGentle 7s ease-in-out infinite;
+    }
+    .check-draw {
+      stroke-dasharray: 50;
+      stroke-dashoffset: 0;
+      animation: checkAnim 1.2s ease-out forwards;
+    }
+    @keyframes checkAnim {
+      from { stroke-dashoffset: 50; }
+      to { stroke-dashoffset: 0; }
+    }
+  </style>
+</head>
+<body class="bg-studio-mist text-body-ink font-sans antialiased selection:bg-cobalt-blue selection:text-white">
+
+  <!-- ==================== HEADER (Sticky with dynamic blur) ==================== -->
+  <header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-hairline transition-all duration-300 shadow-sm">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+      
+      <!-- Brand Logo Lockup -->
+      <a href="#" class="flex items-center gap-3 group">
+        <!-- Stylized Monogram Badge -->
+        <div class="w-10 h-10 rounded-xl bg-deep-slate flex items-center justify-center p-2 shadow-sm relative overflow-hidden group-hover:bg-slate-900 transition-colors">
+          <svg viewBox="0 0 48 48" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="8" width="8" height="32" rx="2" fill="#FFFFFF"></rect>
+            <path d="M22 10L36 24V14C36 11.7909 34.2091 10 32 10H22Z" fill="#2563EB"></path>
+            <path d="M22 28L36 40H26C23.7909 40 22 38.2091 22 36V28Z" fill="#38BDF8"></path>
+            <circle cx="28" cy="24" r="3" fill="#FFFFFF"></circle>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-bold tracking-tight text-deep-slate leading-none">Kollekta</span>
+          <span class="text-[9px] font-semibold tracking-[0.18em] text-muted-caption uppercase mt-0.5">B2B MEDIA SUITE</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-body-ink">
+        <a href="#features" class="hover:text-cobalt-blue transition-colors">Λειτουργίες</a>
+        <a href="#how-it-works" class="hover:text-cobalt-blue transition-colors">Πώς λειτουργεί</a>
+        <a href="#pricing" class="hover:text-cobalt-blue transition-colors">Τιμές</a>
+        <a href="#contact" class="hover:text-cobalt-blue transition-colors">Επικοινωνία</a>
+      </nav>
+
+      <!-- Right Action CTA -->
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 rounded-lg bg-cobalt-blue hover:bg-blue-700 text-white text-sm font-semibold shadow-sm hover:shadow transition-all active:scale-[0.98]">
+          Εκδήλωσε ενδιαφέρον
+        </a>
+        <button type="button" aria-label="Μενού" class="md:hidden p-2 rounded-lg text-body-ink hover:bg-slate-100 transition-colors">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="w-full overflow-hidden">
+
+    <!-- ==================== SECTION 1: HERO ==================== -->
+    <section class="relative pt-12 pb-20 md:pt-20 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Left Text Column (55%) -->
+        <div class="lg:col-span-7 flex flex-col items-start">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-cobalt-blue text-xs font-bold tracking-wider uppercase mb-5">
+            <span class="w-1.5 h-1.5 rounded-full bg-cobalt-blue animate-pulse"></span>
+            B2B MEDIA SUITE ΓΙΑ ΕΠΙΧΕΙΡΗΣΕΙΣ ΧΟΝΔΡΙΚΗΣ ΜΟΔΑΣ
+          </div>
+          
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-deep-slate tracking-tight leading-[1.15] mb-6">
+            Σταμάτα να στέλνεις τη φωτογράφιση της συλλογής έναν-έναν στους πελάτες σου.
+          </h1>
+
+          <p class="text-base sm:text-lg md:text-[18px] text-body-ink leading-relaxed mb-8 max-w-xl">
+            Ανέβασε τη συλλογή μία φορά. Κάθε πελάτης σου μπαίνει από το κινητό, βλέπει ό,τι του αναλογεί, κατεβάζει στο σωστό μέγεθος — και δεν σε ξαναρωτάει «μου το ξαναστέλνεις;»
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-6">
+            <a href="#contact" class="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-cobalt-blue hover:bg-blue-700 text-white font-semibold text-base shadow-sm hover:shadow-md transition-all active:scale-[0.98]">
+              Εκδήλωσε ενδιαφέρον
+            </a>
+            <a href="#pricing" class="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-hairline text-deep-slate font-semibold text-base shadow-sm hover:border-slate-300 transition-all">
+              Δες τα πακέτα
+            </a>
+          </div>
+
+          <p class="text-[13px] text-muted-caption flex items-center gap-2">
+            <span class="material-symbols-outlined text-base text-sky-cyan">verified</span>
+            Χωρίς εγκατάσταση για τους πελάτες σου. Με το δικό σου λογότυπο, όχι το δικό μας.
+          </p>
+        </div>
+
+        <!-- Right Column: Product Mockup (45%) -->
+        <div class="lg:col-span-5 relative">
+          <!-- Ambient backlight glow -->
+          <div class="absolute -inset-4 bg-gradient-to-tr from-blue-100/40 via-sky-50/20 to-transparent rounded-3xl blur-2xl -z-10"></div>
+          
+          <!-- Elevated Frame Mockup -->
+          <div class="floating-hero bg-white rounded-2xl border border-slate-hairline shadow-floating-mockup p-4 sm:p-5 relative transition-transform">
+            
+            <!-- Window Bar -->
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-hairline">
+              <div class="flex items-center gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+              </div>
+              <div class="text-[11px] font-mono text-muted-caption bg-studio-mist px-2 py-0.5 rounded border border-slate-hairline">
+                portal.anemone-fashion.gr
+              </div>
+              <div class="text-[11px] font-semibold text-deep-slate flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+              </div>
+            </div>
+
+            <!-- Customer Mockup Header -->
+            <div class="flex items-center justify-between mb-3 px-1">
+              <div>
+                <span class="text-[10px] font-bold text-muted-caption uppercase tracking-wider block">Συλλογή</span>
+                <h4 class="text-xs sm:text-sm font-bold text-deep-slate">Spring / Summer 2025</h4>
+              </div>
+              <span class="text-[11px] text-cobalt-blue font-medium cursor-pointer">Επιλογή όλων</span>
+            </div>
+
+            <!-- Image Grid in Mockup -->
+            <div class="grid grid-cols-2 gap-2.5 relative">
+              <!-- Tile 1 (Selected) -->
+              <div class="relative rounded-lg overflow-hidden border-2 border-sky-cyan bg-white shadow-sm aspect-[4/5] group">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNjcLB1Xq2oyAAmETGmEhpPCCe17TZp8SelAtoomNkwk6WE_GNAWK1opgw8t_eoshBwZ8Qwy8iknzXnC85uCvlqboZrzX_wtHCQZFyJNQwgw4i_llbeMI-mXNZS0NtuRLcrI_dWBsKpvz0wx-qcQC47DsraiRMenM6cNC6FLqubk8GFLm9TbvwKPvJVggDgo_eWqhSTV63V0xQkn367HroWavA1Ig7x0DIFIf6hGtKHHy3biZO8ym9fg" alt="Look 01" class="w-full h-full object-cover">
+                <div class="absolute top-2 left-2 w-5 h-5 rounded-full bg-sky-cyan text-white flex items-center justify-center text-xs shadow-md">
+                  <span class="material-symbols-outlined text-[14px]">check</span>
+                </div>
+                <div class="absolute bottom-1.5 left-1.5 px-1.5 py-0.5 rounded bg-white/90 backdrop-blur-sm text-[9px] font-mono font-semibold text-deep-slate">
+                  SUIT-101
+                </div>
+              </div>
+
+              <!-- Tile 2 (Selected) -->
+              <div class="relative rounded-lg overflow-hidden border-2 border-sky-cyan bg-white shadow-sm aspect-[4/5]">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0rfd_o_UjQzD3CtgANT_bZNz5W-b0SxNnGuNGi3KT0KPQ60nX_v2TZPl7GhoxMLyAqPcnXzjLzv6kT1_ycHgR75nrgDaI0_tFSUf_GubkeLjIOaGx2rPUhAlefcto325BgfCIsXqBCpcpuH8OGsUl9q58U7WN4zPtRv3g1xJ9g8-OYORpyBqtcZupxXL-Tj27rW2T4FUsXpdwl3kNNJrARVbBOjJRL6LafnfHpU7TbBc3oDChu5iciQ" alt="Look 02" class="w-full h-full object-cover">
+                <div class="absolute top-2 left-2 w-5 h-5 rounded-full bg-sky-cyan text-white flex items-center justify-center text-xs shadow-md">
+                  <span class="material-symbols-outlined text-[14px]">check</span>
+                </div>
+                <div class="absolute bottom-1.5 left-1.5 px-1.5 py-0.5 rounded bg-white/90 backdrop-blur-sm text-[9px] font-mono font-semibold text-deep-slate">
+                  DRS-305
+                </div>
+              </div>
+
+              <!-- Tile 3 (Selected) -->
+              <div class="relative rounded-lg overflow-hidden border-2 border-sky-cyan bg-white shadow-sm aspect-[4/5]">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqn7JswoWqMJd3Ph5JTBw2pSWq8aDnKm4x1v115ldryUiJQ7i1fa4nWyBZnaKjdQT5815XshNHPnZvXjbTspEXpp4R957pvCS6nQa7nTL_Yd4AV13F_KoBDm6GNvnCvzBGNrd7bkheiPD4cXTGvQ9WKMThvRTpQaOdzPg07XJvlDqYGe8hyFcrhTYlXjYllSBOqGPoPppdwhNzLd1T68Di-CUU-fqHecv04FJL5eu1j4G9yBT9NJ2y4g" alt="Look 03" class="w-full h-full object-cover">
+                <div class="absolute top-2 left-2 w-5 h-5 rounded-full bg-sky-cyan text-white flex items-center justify-center text-xs shadow-md">
+                  <span class="material-symbols-outlined text-[14px]">check</span>
+                </div>
+                <div class="absolute bottom-1.5 left-1.5 px-1.5 py-0.5 rounded bg-white/90 backdrop-blur-sm text-[9px] font-mono font-semibold text-deep-slate">
+                  BLAZ-202
+                </div>
+              </div>
+
+              <!-- Tile 4 (Neutral/Resting) -->
+              <div class="relative rounded-lg overflow-hidden border border-slate-hairline bg-white shadow-sm aspect-[4/5]">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2ul_bqH1DHmZdQvkUQike4DoP4nWMT2ejr6MghHOfc4LKQ-zlnUN4JLejrP4jJmfuRBRIMjVy8cY3DLTLLzH6d-uSxj28hH7FkJ-ENo-PQ8iytTQ5U-300c8zIG3U7wIqMw4P2s_retK2u3dOS_nli6io5gB-OrIvy3cxHgOYAdSOEykqlQHgL8QME82sn8vgZULWyrO5HxZSQRrCl64utVKRjj0PPEc_CwmzqQhxbdEetsNOsp_jWA" alt="Look 04" class="w-full h-full object-cover">
+                <div class="absolute bottom-1.5 left-1.5 px-1.5 py-0.5 rounded bg-white/90 backdrop-blur-sm text-[9px] font-mono font-semibold text-deep-slate">
+                  ACC-104
+                </div>
+              </div>
+
+              <!-- Floating Rounded Selection Bar (Docked near bottom of mockup) -->
+              <div class="absolute -bottom-3 left-2 right-2 bg-deep-slate text-white rounded-xl px-3 py-2.5 flex items-center justify-between shadow-xl border border-slate-700 z-10">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-sky-cyan"></span>
+                  <span class="text-xs font-semibold">3 επιλεγμένες</span>
+                  <span class="text-[10px] text-slate-400 font-mono hidden sm:inline">• ~48 MB</span>
+                </div>
+                <button type="button" class="px-3 py-1 rounded-lg bg-cobalt-blue text-white text-xs font-bold flex items-center gap-1 shadow-sm">
+                  <span class="material-symbols-outlined text-[13px]">download</span>
+                  Λήψη
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Decorative Spec label -->
+          <div class="absolute -top-3 -right-3 bg-white px-2.5 py-1 rounded-full border border-slate-hairline shadow-sm text-[10px] font-mono font-semibold text-muted-caption hidden sm:block">
+            UI FRAME SPEC • 4:5
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 2: THE PROBLEM ==================== -->
+    <section class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">ΤΟ ΠΡΟΒΛΗΜΑ</span>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight">
+          Ξέρεις ήδη πώς πάει αυτό.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Card 1 -->
+        <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-hairline shadow-card-rest hover:shadow-card-hover transition-all flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-hairline flex items-center justify-center text-deep-slate mb-5 group-hover:border-cobalt-blue/30 transition-colors">
+              <span class="material-symbols-outlined text-2xl text-cobalt-blue">link_off</span>
+            </div>
+            <h3 class="text-lg font-bold text-deep-slate mb-3">WeTransfer / Google Drive</h3>
+            <p class="text-sm text-body-ink leading-relaxed">
+              Links που λήγουν σε 7 μέρες. Φάκελοι στο Drive που κάποιος πελάτης δεν βλέπει επειδή δεν του δόθηκε σωστά το permission. Καμία ιδέα ποιος κατέβασε τι.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-xs text-muted-caption font-mono">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Ληγμένο link 404
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-hairline shadow-card-rest hover:shadow-card-hover transition-all flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-hairline flex items-center justify-center text-deep-slate mb-5 group-hover:border-cobalt-blue/30 transition-colors">
+              <span class="material-symbols-outlined text-2xl text-cobalt-blue">mark_email_unread</span>
+            </div>
+            <h3 class="text-lg font-bold text-deep-slate mb-3">Το ατελείωτο email thread</h3>
+            <p class="text-sm text-body-ink leading-relaxed">
+              «Καλησπέρα, μπορείτε να μου ξαναστείλετε τις φωτογραφίες της collection; Το link έληξε.» Τρεις φορές τη βδομάδα, από τρεις διαφορετικούς πελάτες, για την ίδια συλλογή.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-xs text-muted-caption font-mono">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> Re: FW: Φωτογραφίες
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-hairline shadow-card-rest hover:shadow-card-hover transition-all flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-hairline flex items-center justify-center text-deep-slate mb-5 group-hover:border-cobalt-blue/30 transition-colors">
+              <span class="material-symbols-outlined text-2xl text-cobalt-blue">photo_size_select_actual</span>
+            </div>
+            <h3 class="text-lg font-bold text-deep-slate mb-3">Λάθος μέγεθος αρχείου</h3>
+            <p class="text-sm text-body-ink leading-relaxed">
+              Στέλνεις την πλήρη ανάλυση (15MB/φωτό) σε κάποιον που απλά θέλει να τη βάλει στο eshop του. Ή στέλνεις μικρή ανάλυση σε κάποιον που τη χρειάζεται για εκτύπωση καταλόγου.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-xs text-muted-caption font-mono">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Μη συμβατό αρχείο
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 3: THE SOLUTION (3 steps) ==================== -->
+    <section id="how-it-works" class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">Η ΛΥΣΗ</span>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight">
+          Ανεβάζεις μία φορά. Το Kollekta κάνει τα υπόλοιπα.
+        </h2>
+      </div>
+
+      <!-- Steps Row with deliberate connecting line -->
+      <div class="relative">
+        <!-- Connecting Line for Desktop -->
+        <div class="hidden md:block absolute top-10 left-[15%] right-[15%] h-[2px] bg-slate-200 z-0"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+          
+          <!-- Step 01 -->
+          <div class="bg-white md:bg-transparent p-6 md:p-0 rounded-2xl border md:border-none border-slate-hairline flex flex-col items-center text-center">
+            <div class="w-20 h-20 rounded-2xl bg-white border border-slate-hairline shadow-sm flex items-center justify-center text-3xl font-extrabold text-cobalt-blue mb-6 font-mono">
+              01
+            </div>
+            <h3 class="text-lg font-bold text-deep-slate mb-2">Ανεβάζεις τη συλλογή</h3>
+            <p class="text-sm text-body-ink leading-relaxed max-w-xs">
+              Σύρε και άφησε τις φωτογραφίες. Το Kollekta φτιάχνει αυτόματα 4 εκδοχές μεγέθους για κάθε μία — εσύ δεν κάνεις τίποτα παραπάνω.
+            </p>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="bg-white md:bg-transparent p-6 md:p-0 rounded-2xl border md:border-none border-slate-hairline flex flex-col items-center text-center">
+            <div class="w-20 h-20 rounded-2xl bg-white border border-slate-hairline shadow-sm flex items-center justify-center text-3xl font-extrabold text-cobalt-blue mb-6 font-mono">
+              02
+            </div>
+            <h3 class="text-lg font-bold text-deep-slate mb-2">Οι πελάτες σου μπαίνουν με το κινητό τους</h3>
+            <p class="text-sm text-body-ink leading-relaxed max-w-xs">
+              Τηλέφωνο + μόνιμος κωδικός πρόσβασης. Χωρίς εγκατάσταση εφαρμογής, χωρίς νέο λογαριασμό να θυμούνται.
+            </p>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="bg-white md:bg-transparent p-6 md:p-0 rounded-2xl border md:border-none border-slate-hairline flex flex-col items-center text-center">
+            <div class="w-20 h-20 rounded-2xl bg-white border border-slate-hairline shadow-sm flex items-center justify-center text-3xl font-extrabold text-cobalt-blue mb-6 font-mono">
+              03
+            </div>
+            <h3 class="text-lg font-bold text-deep-slate mb-2">Κατεβάζουν ό,τι χρειάζονται, στο σωστό μέγεθος</h3>
+            <p class="text-sm text-body-ink leading-relaxed max-w-xs">
+              Επιλέγουν φωτογραφίες, διαλέγουν «για eshop» ή «για εκτύπωση», κατεβάζουν. Εσύ βλέπεις ποιος κατέβασε τι.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 4: FEATURES IN DEPTH ==================== -->
+    <section id="features" class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">ΛΕΙΤΟΥΡΓΙΚΟΤΗΤΕΣ</span>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight">
+          Χτισμένο για το πώς δουλεύει πραγματικά η χονδρική μόδα.
+        </h2>
+      </div>
+
+      <div class="flex flex-col gap-8">
+        
+        <!-- Feature 1: Tags & Reach -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-slate-hairline shadow-card-rest hover:shadow-card-hover transition-all">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7">
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-deep-slate text-xs font-mono font-bold mb-4">
+                <span class="">01</span> • ΟΡΑΤΟΤΗΤΑ
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-deep-slate mb-3">
+                Ομαδοποίηση πελατών &amp; ελεγχόμενη ορατότητα
+              </h3>
+              <p class="text-sm sm:text-base text-body-ink leading-relaxed mb-4">
+                Δεν έχουν όλοι οι πελάτες σου πρόσβαση στις ίδιες συλλογές. Με το Kollekta κατηγοριοποιείς τους αγοραστές σου με ετικέτες (π.χ. «Χονδρική Ελλάδα», «VIP Showroom», «Εξωτερικό») και καθορίζεις με ένα κλικ ποιος βλέπει ποιον κατάλογο. Μια συλλογή μπορεί να είναι δημόσια σε όλους τους ενεργούς πελάτες ή διαθέσιμη αποκλειστικά σε συγκεκριμένους επιλεγμένους κωδικούς.
+              </p>
+            </div>
+            <div class="lg:col-span-5 bg-studio-mist rounded-xl p-5 border border-slate-hairline">
+              <span class="text-[11px] font-bold text-muted-caption uppercase tracking-wider block mb-3">Στοχευμένη πρόσβαση (Reach)</span>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1.5 rounded-lg bg-cobalt-blue text-white text-xs font-semibold flex items-center gap-1 shadow-sm">
+                  <span class="material-symbols-outlined text-sm">check</span> Χονδρική (180)
+                </span>
+                <span class="px-3 py-1.5 rounded-lg bg-white border border-slate-hairline text-deep-slate text-xs font-medium">
+                  VIP (24)
+                </span>
+                <span class="px-3 py-1.5 rounded-lg bg-cobalt-blue text-white text-xs font-semibold flex items-center gap-1 shadow-sm">
+                  <span class="material-symbols-outlined text-sm">check</span> Εξωτερικό (46)
+                </span>
+              </div>
+              <div class="bg-white rounded-lg p-3 border border-slate-hairline flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-sky-cyan text-lg">group</span>
+                  <span class="text-xs font-medium text-body-ink">Εκτιμώμενη απήχηση:</span>
+                </div>
+                <span class="text-xs font-bold text-deep-slate font-mono bg-blue-50 text-cobalt-blue px-2 py-0.5 rounded">
+                  reach: 84 πελάτες
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2: Order Filtering (Pro/Business) -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-slate-hairline shadow-card-rest hover:shadow-card-hover transition-all">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7">
+              <div class="flex items-center gap-2 mb-4">
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-100 text-deep-slate text-xs font-mono font-bold">
+                  <span class="">02</span> • ΠΑΡΑΓΓΕΛΙΕΣ
+                </span>
+                <span class="px-2 py-0.5 rounded-full bg-amber-50 border border-amber-200 text-amber-soon text-[11px] font-bold">
+                  Pro / Business
+                </span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-deep-slate mb-3">
+                Κάθε πελάτης βλέπει (και κατεβάζει) τη δική του παραγγελία
+              </h3>
+              <p class="text-sm sm:text-base text-body-ink leading-relaxed mb-4">
+                Αντί να ψάχνει ο πελάτης ανάμεσα σε 300 κωδικούς της σεζόν ποιους παρήγγειλε για το μαγαζί του, το Kollekta μπορεί να φιλτράρει τη συλλογή βάσει του linesheet της παραγγελίας του. Ο πελάτης βλέπει άμεσα διαθέσιμα για λήψη μόνο τα προϊόντα που αγόρασε, ενώ τα υπόλοιπα εμφανίζονται σε κατάσταση προεπισκόπησης χωρίς δυνατότητα λήψης πλήρους αρχείου.
+              </p>
+            </div>
+            <div class="lg:col-span-5 bg-studio-mist rounded-xl p-5 border border-slate-hairline">
+              <span class="text-[11px] font-bold text-muted-caption uppercase tracking-wider block mb-3">Κατάσταση πλακιδίων (Order Permission)</span>
+              <div class="grid grid-cols-2 gap-3">
+                <!-- Normal tile -->
+                <div class="bg-white rounded-lg border border-slate-hairline p-2 flex flex-col gap-1.5 shadow-sm">
+                  <div class="relative aspect-square rounded bg-slate-100 overflow-hidden">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNjcLB1Xq2oyAAmETGmEhpPCCe17TZp8SelAtoomNkwk6WE_GNAWK1opgw8t_eoshBwZ8Qwy8iknzXnC85uCvlqboZrzX_wtHCQZFyJNQwgw4i_llbeMI-mXNZS0NtuRLcrI_dWBsKpvz0wx-qcQC47DsraiRMenM6cNC6FLqubk8GFLm9TbvwKPvJVggDgo_eWqhSTV63V0xQkn367HroWavA1Ig7x0DIFIf6hGtKHHy3biZO8ym9fg" class="w-full h-full object-cover">
+                    <span class="absolute top-1 right-1 px-1.5 py-0.5 rounded bg-emerald-600 text-white text-[9px] font-bold font-mono">Στην παραγγελία</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px]">
+                    <span class="font-mono text-deep-slate font-bold">SUIT-101</span>
+                    <span class="text-cobalt-blue font-semibold">Λήψη ✓</span>
+                  </div>
+                </div>
+                <!-- Locked tile -->
+                <div class="bg-white rounded-lg border border-slate-hairline p-2 flex flex-col gap-1.5 opacity-75 shadow-sm">
+                  <div class="relative aspect-square rounded bg-slate-200 overflow-hidden">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0rfd_o_UjQzD3CtgANT_bZNz5W-b0SxNnGuNGi3KT0KPQ60nX_v2TZPl7GhoxMLyAqPcnXzjLzv6kT1_ycHgR75nrgDaI0_tFSUf_GubkeLjIOaGx2rPUhAlefcto325BgfCIsXqBCpcpuH8OGsUl9q58U7WN4zPtRv3g1xJ9g8-OYORpyBqtcZupxXL-Tj27rW2T4FUsXpdwl3kNNJrARVbBOjJRL6LafnfHpU7TbBc3oDChu5iciQ" class="w-full h-full object-cover grayscale">
+                    <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-[1px] flex flex-col items-center justify-center text-white">
+                      <span class="material-symbols-outlined text-xl">lock</span>
+                      <span class="text-[9px] font-semibold mt-1">Μόνο προεπισκόπηση</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px]">
+                    <span class="font-mono text-muted-caption">KNT-550</span>
+                    <span class="text-muted-caption">Εκτός παραγγελίας</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3: Fast Access -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-slate-hairline shadow-card-rest hover:shadow-card-hover transition-all">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7">
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-deep-slate text-xs font-mono font-bold mb-4">
+                <span class="">03</span> • ΠΡΟΣΒΑΣΗ
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-deep-slate mb-3">
+                Πρόσβαση σε δευτερόλεπτα — για πελάτες ΚΑΙ συνεργάτες
+              </h3>
+              <p class="text-sm sm:text-base text-body-ink leading-relaxed mb-4">
+                Τέρμα τα χαμένα emails με ξεχασμένους κωδικούς και οι περίπλοκες διαδικασίες εγγραφής. Οι πελάτες χονδρικής συνδέονται απευθείας με τον αριθμό του κινητού τους τηλεφώνου και έναν μόνιμο τετραψήφιο κωδικό που παραμένει σταθερός για όλες τις σεζόν. Μπορούν επίσης να λάβουν άμεσα νέο σύνδεσμο πρόσβασης μέσω SMS ή Viber με ένα πάτημα.
+              </p>
+            </div>
+            <div class="lg:col-span-5 bg-studio-mist rounded-xl p-5 border border-slate-hairline">
+              <div class="max-w-[280px] mx-auto bg-white rounded-xl p-4 border border-slate-hairline shadow-sm">
+                <span class="text-[10px] font-mono text-muted-caption uppercase block mb-2 text-center">B2B Quick Auth</span>
+                <div class="space-y-2 mb-3">
+                  <div>
+                    <span class="text-[10px] text-body-ink font-semibold">Κινητό τηλέφωνο</span>
+                    <div class="px-2.5 py-1.5 rounded border border-slate-200 text-xs font-mono bg-slate-50 text-deep-slate">
+                      694 000 0001
+                    </div>
+                  </div>
+                  <div>
+                    <span class="text-[10px] text-body-ink font-semibold">Κωδικός πρόσβασης</span>
+                    <div class="px-2.5 py-1.5 rounded border border-slate-200 text-xs font-mono bg-slate-50 text-deep-slate">
+                      KLK-8821
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="w-full py-1.5 rounded bg-cobalt-blue text-white text-xs font-bold shadow-sm">
+                  Σύνδεση →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 4: Resizing -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-slate-hairline shadow-card-rest hover:shadow-card-hover transition-all">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7">
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-deep-slate text-xs font-mono font-bold mb-4">
+                <span class="">04</span> • RESIZING
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-deep-slate mb-3">
+                Αυτόματο resizing — το σωστό αρχείο για τη σωστή χρήση
+              </h3>
+              <p class="text-sm sm:text-base text-body-ink leading-relaxed mb-4">
+                Κάθε φορά που ανεβάζεις μια φωτογραφία υψηλής ανάλυσης (RAW ή TIFF), το σύστημα δημιουργεί αυτόματα βελτιστοποιημένες εκδοχές: πλήρες αρχείο εκτύπωσης 300 DPI, συμπιεσμένο WebP για το ηλεκτρονικό κατάστημα (eshop), και ελαφριές διαστάσεις για social media και lookbook previews. Ο αγοραστής διαλέγει με διακόπτη το μέγεθος που χρειάζεται και κατεβάζει ακριβώς αυτό — ούτε byte παραπάνω.
+              </p>
+            </div>
+            <div class="lg:col-span-5 bg-studio-mist rounded-xl p-5 border border-slate-hairline">
+              <span class="text-[11px] font-bold text-muted-caption uppercase tracking-wider block mb-3">Αυτόματη παραγωγή προφίλ</span>
+              <div class="flex items-center gap-3 mb-4 bg-white p-3 rounded-lg border border-slate-hairline">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2ul_bqH1DHmZdQvkUQike4DoP4nWMT2ejr6MghHOfc4LKQ-zlnUN4JLejrP4jJmfuRBRIMjVy8cY3DLTLLzH6d-uSxj28hH7FkJ-ENo-PQ8iytTQ5U-300c8zIG3U7wIqMw4P2s_retK2u3dOS_nli6io5gB-OrIvy3cxHgOYAdSOEykqlQHgL8QME82sn8vgZULWyrO5HxZSQRrCl64utVKRjj0PPEc_CwmzqQhxbdEetsNOsp_jWA" class="w-14 h-14 rounded object-cover border border-slate-200">
+                <div>
+                  <span class="text-xs font-bold text-deep-slate block">ACC-1045.raw</span>
+                  <span class="text-[11px] text-muted-caption font-mono">Master Ingest: 28.4 MB TIFF</span>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="bg-white p-2 rounded border border-slate-hairline text-center">
+                  <span class="text-[10px] font-semibold text-deep-slate block">Εκτύπωση</span>
+                  <span class="text-[10px] text-cobalt-blue font-mono font-bold">18.2 MB • 300 DPI</span>
+                </div>
+                <div class="bg-white p-2 rounded border border-slate-hairline text-center">
+                  <span class="text-[10px] font-semibold text-deep-slate block">Eshop</span>
+                  <span class="text-[10px] text-cobalt-blue font-mono font-bold">850 KB • WebP</span>
+                </div>
+                <div class="bg-white p-2 rounded border border-slate-hairline text-center">
+                  <span class="text-[10px] font-semibold text-deep-slate block">Grid</span>
+                  <span class="text-[10px] text-cobalt-blue font-mono font-bold">240 KB • 1200px</span>
+                </div>
+                <div class="bg-white p-2 rounded border border-slate-hairline text-center">
+                  <span class="text-[10px] font-semibold text-deep-slate block">Thumb</span>
+                  <span class="text-[10px] text-cobalt-blue font-mono font-bold">45 KB • 400px</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 5: Time Saved (Leads into Section 5) -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-slate-hairline shadow-card-rest hover:shadow-card-hover transition-all">
+          <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-deep-slate text-xs font-mono font-bold mb-4">
+              <span class="">05</span> • ΑΠΟΔΟΣΗ
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold text-deep-slate mb-3">
+              Ο χρόνος που κερδίζεις — μετρημένος σε ώρες, όχι σε αόριστη «ευκολία»
+            </h3>
+            <p class="text-sm sm:text-base text-body-ink leading-relaxed">
+              Κάθε νέα σεζόν συνοδεύεται από δεκάδες επαναλαμβανόμενα τηλεφωνήματα, χαμένα links και χειροκίνητες αποστολές αρχείων σε μεμονωμένους πελάτες. Το Kollekta εξαλείφει αυτόν τον χαμένο χρόνο: οι πελάτες εξυπηρετούνται αυτόνομα όλο το 24ωρο, βρίσκουν πάντα ενεργά τα αρχεία τους και η ομάδα σου αφιερώνει τον χρόνο της στις πωλήσεις αντί στην τεχνική υποστήριξη φωτογραφιών.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 5: STAT BAND ==================== -->
+    <section class="w-full py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50/70 via-studio-mist to-white border-y border-slate-hairline">
+      <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
+        
+        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-4">
+          Ο ΧΡΟΝΟΣ ΠΟΥ ΧΑΝΕΤΑΙ
+        </span>
+        
+        <!-- Giant Stat Number -->
+        <div class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-cobalt-blue tracking-tight leading-none mb-6 select-none drop-shadow-sm">
+          100+
+        </div>
+        
+        <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate mb-6">
+          εργατοώρες τον χρόνο
+        </div>
+
+        <p class="text-base sm:text-lg text-body-ink leading-relaxed max-w-2xl mb-8">
+          Τόσο ενδεικτικά κοστίζει σε μια επιχείρηση χονδρικής μόδας με δεκάδες ενεργούς αγοραστές η διαχείριση αιτημάτων γύρω από φωτογραφίες συλλογής — αναζήτηση αρχείου, επανάληψη αποστολής, re-upload σε WeTransfer, ατελείωτα emails «μου το ξαναστέλνεις;». Καμία από αυτές τις ώρες δεν χρειάζεται να ξοδεύεται.
+        </p>
+
+        <p class="text-xs text-muted-caption italic max-w-xl">
+          Ενδεικτική εκτίμηση βάσει τυπικού όγκου request σε επιχειρήσεις χονδρικής μόδας με αντίστοιχο μέγεθος πελατολογίου — όχι μετρημένο αποτέλεσμα συγκεκριμένου πελάτη.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 6: WHITE-LABEL ==================== -->
+    <section class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5">
+          <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">ΤΟ ΔΙΚΟ ΣΟΥ BRAND</span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight mb-4">
+            Οι πελάτες σου βλέπουν εσένα. Όχι εμάς.
+          </h2>
+          <p class="text-base text-body-ink leading-relaxed">Το δικό σου λογότυπο σε εμφανή σημεία και το δικό σου subdomain. Η αξιόπιστη, ενιαία αισθητική και τα χρώματα του Kollekta παραμένουν σταθερά — αναδεικνύοντας τις φωτογραφίες σου με την ταυτότητα της επιχείρησής σου σε πρώτο πλάνο.</p>
+        </div>
+
+        <!-- Split Mockups: Two custom portals side-by-side -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4"><!-- Mockup Brand A -->
+<div class="bg-white rounded-xl p-4 border border-slate-hairline shadow-sm flex flex-col justify-between">
+  <div>
+    <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded bg-deep-slate flex items-center justify-center p-1 text-white">
+          <svg viewBox="0 0 48 48" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="8" width="8" height="32" rx="2" fill="#FFFFFF"></rect>
+            <path d="M22 10L36 24V14C36 11.7909 34.2091 10 32 10H22Z" fill="#2563EB"></path>
+            <path d="M22 28L36 40H26C23.7909 40 22 38.2091 22 36V28Z" fill="#38BDF8"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-[11px] font-bold text-deep-slate leading-none">Kollekta</span>
+          <span class="text-[8px] text-muted-caption font-mono">B2B PORTAL</span>
+        </div>
+      </div>
+      <div class="text-right">
+        <span class="text-[10px] font-bold text-deep-slate block leading-none">MAISON ÉTÉ</span>
+        <span class="text-[8px] text-cobalt-blue font-semibold">Εξουσιοδοτημένος Συνεργάτης</span>
+      </div>
+    </div>
+    <div class="p-3 bg-studio-mist rounded-lg mb-3 border border-slate-100">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[10px] font-semibold text-deep-slate">Lookbook FW25</span>
+        <span class="text-[9px] font-mono text-muted-caption">maisonete.kollekta.gr</span>
+      </div>
+      <div class="h-20 bg-slate-200 rounded overflow-hidden relative">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNjcLB1Xq2oyAAmETGmEhpPCCe17TZp8SelAtoomNkwk6WE_GNAWK1opgw8t_eoshBwZ8Qwy8iknzXnC85uCvlqboZrzX_wtHCQZFyJNQwgw4i_llbeMI-mXNZS0NtuRLcrI_dWBsKpvz0wx-qcQC47DsraiRMenM6cNC6FLqubk8GFLm9TbvwKPvJVggDgo_eWqhSTV63V0xQkn367HroWavA1Ig7x0DIFIf6hGtKHHy3biZO8ym9fg" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </div>
+  <div class="text-[10px] text-muted-caption font-mono flex items-center justify-between pt-1 border-t border-slate-50">
+    <span class="text-body-ink font-medium">Εμφανές λογότυπο συνεργάτη</span>
+    <span class="text-cobalt-blue">maisonete.kollekta.gr</span>
+  </div>
+</div>
+
+<!-- Mockup Brand B -->
+<div class="bg-white rounded-xl p-4 border border-slate-hairline shadow-sm flex flex-col justify-between">
+  <div>
+    <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded bg-deep-slate flex items-center justify-center p-1 text-white">
+          <svg viewBox="0 0 48 48" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="8" width="8" height="32" rx="2" fill="#FFFFFF"></rect>
+            <path d="M22 10L36 24V14C36 11.7909 34.2091 10 32 10H22Z" fill="#2563EB"></path>
+            <path d="M22 28L36 40H26C23.7909 40 22 38.2091 22 36V28Z" fill="#38BDF8"></path>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-[11px] font-bold text-deep-slate leading-none">Kollekta</span>
+          <span class="text-[8px] text-muted-caption font-mono">B2B PORTAL</span>
+        </div>
+      </div>
+      <div class="text-right">
+        <span class="text-[10px] font-bold text-deep-slate block leading-none">ANEMONE ATHENS</span>
+        <span class="text-[8px] text-cobalt-blue font-semibold">Εξουσιοδοτημένος Συνεργάτης</span>
+      </div>
+    </div>
+    <div class="p-3 bg-studio-mist rounded-lg mb-3 border border-slate-100">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[10px] font-semibold text-deep-slate">Resort 2026</span>
+        <span class="text-[9px] font-mono text-muted-caption">anemone.kollekta.gr</span>
+      </div>
+      <div class="h-20 bg-slate-200 rounded overflow-hidden relative">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0rfd_o_UjQzD3CtgANT_bZNz5W-b0SxNnGuNGi3KT0KPQ60nX_v2TZPl7GhoxMLyAqPcnXzjLzv6kT1_ycHgR75nrgDaI0_tFSUf_GubkeLjIOaGx2rPUhAlefcto325BgfCIsXqBCpcpuH8OGsUl9q58U7WN4zPtRv3g1xJ9g8-OYORpyBqtcZupxXL-Tj27rW2T4FUsXpdwl3kNNJrARVbBOjJRL6LafnfHpU7TbBc3oDChu5iciQ" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </div>
+  <div class="text-[10px] text-muted-caption font-mono flex items-center justify-between pt-1 border-t border-slate-50">
+    <span class="text-body-ink font-medium">Εμφανές λογότυπο συνεργάτη</span>
+    <span class="text-cobalt-blue">anemone.kollekta.gr</span>
+  </div>
+</div></div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 7: SECURITY ==================== -->
+    <section class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">ΑΣΦΑΛΕΙΑ</span>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight">
+          Τα δεδομένα σου, δικά σου.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="bg-white rounded-xl p-6 border border-slate-hairline shadow-sm flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-cobalt-blue flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-xl">shield</span>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-deep-slate mb-1">Απομονωμένη υποδομή ανά πελάτη</h3>
+            <p class="text-sm text-body-ink leading-relaxed">
+              Καμία διασταύρωση δεδομένων ανάμεσα σε επιχειρήσεις.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 border border-slate-hairline shadow-sm flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-cobalt-blue flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-xl">backup</span>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-deep-slate mb-1">Καθημερινά αντίγραφα ασφαλείας</h3>
+            <p class="text-sm text-body-ink leading-relaxed">
+              Με δοκιμασμένη διαδικασία ανάκτησης.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 border border-slate-hairline shadow-sm flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-cobalt-blue flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-xl">download_for_offline</span>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-deep-slate mb-1">Πλήρης εξαγωγή δεδομένων όποτε το χρειαστείς</h3>
+            <p class="text-sm text-body-ink leading-relaxed">
+              Δικά σου δεδομένα, δικός σου έλεγχος.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 8: PRICING ==================== -->
+    <section id="pricing" class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">ΤΙΜΟΛΟΓΗΣΗ</span>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight mb-3">
+          Απλή τιμολόγηση, χωρίς κρυφά κόστη.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-10">
+        
+        <!-- Tier 1: Basic -->
+        <div class="bg-white rounded-2xl p-7 border border-slate-hairline shadow-card-rest flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm font-bold text-deep-slate uppercase tracking-wider">Basic</span>
+            </div>
+            <div class="mb-4">
+              <div class="text-3xl sm:text-4xl font-extrabold text-deep-slate">300 €<span class="text-base font-normal text-muted-caption">/έτος</span></div>
+              <div class="text-xs text-muted-caption font-mono mt-1">ή 30 €/μήνα · setup 150 € εφάπαξ</div>
+            </div>
+            <p class="text-xs sm:text-sm text-body-ink mb-6 font-medium">
+              Για να ξεκινήσεις να στέλνεις συλλογές σωστά.
+            </p>
+            <div class="space-y-3 mb-8 text-sm text-body-ink border-t border-slate-100 pt-6">
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <span class="">10 GB χώρος</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <span class="">Διατήρηση πλήρους ανάλυσης: 12 μήνες</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <span class="">Email αποστολής με το δικό σου subdomain</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <span class="">Υποστήριξη email, Δευ–Παρ, SLA 24 ωρών</span>
+              </div>
+            </div>
+          </div>
+          <a href="#contact" class="w-full py-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-hairline text-deep-slate text-center font-bold text-sm transition-all shadow-sm">
+            Επίλεξε Basic
+          </a>
+        </div>
+
+        <!-- Tier 2: Pro (Highlighted mid-hover state) -->
+        <div class="bg-white rounded-2xl p-8 border-2 border-cobalt-blue shadow-pro-elevated flex flex-col justify-between relative lg:-translate-y-3">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-cobalt-blue text-white text-[11px] font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">star</span> Δημοφιλές
+          </div>
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm font-bold text-cobalt-blue uppercase tracking-wider">Pro</span>
+            </div>
+            <div class="mb-4">
+              <div class="text-3xl sm:text-4xl font-extrabold text-deep-slate">600 €<span class="text-base font-normal text-muted-caption">/έτος</span></div>
+              <div class="text-xs text-muted-caption font-mono mt-1">ή 60 €/μήνα · setup 150 € εφάπαξ</div>
+            </div>
+            <p class="text-xs sm:text-sm text-body-ink mb-6 font-medium">
+              Ομαδοποίηση πελατών και πρόσβαση βάσει παραγγελίας.
+            </p>
+            <div class="space-y-3 mb-8 text-sm text-body-ink border-t border-slate-100 pt-6">
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <span class="font-semibold text-deep-slate">25 GB χώρος</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <span class="">Διατήρηση πλήρους ανάλυσης: 24 μήνες</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <span class="">Ετικέτες &amp; ελεγχόμενη ορατότητα ανά ομάδα πελατών</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="">Κωδικοί &amp; φιλτράρισμα βάσει παραγγελίας</span>
+                  <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-50 border border-amber-200 text-amber-soon">Σύντομα</span>
+                </div>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <span class="">Υποστήριξη email, Δευ–Παρ, SLA 24 ωρών</span>
+              </div>
+            </div>
+          </div>
+          <a href="#contact" class="w-full py-3.5 rounded-xl bg-cobalt-blue hover:bg-blue-700 text-white text-center font-bold text-sm transition-all shadow-md active:scale-[0.98]">
+            Επίλεξε Pro
+          </a>
+        </div>
+
+        <!-- Tier 3: Business -->
+        <div class="bg-white rounded-2xl p-7 border border-slate-hairline shadow-card-rest flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-sm font-bold text-deep-slate uppercase tracking-wider">Business</span>
+            </div>
+            <div class="mb-4">
+              <div class="text-3xl sm:text-4xl font-extrabold text-deep-slate">1.100 €<span class="text-base font-normal text-muted-caption">/έτος</span></div>
+              <div class="text-xs text-muted-caption font-mono mt-1">ή 110 €/μήνα · setup 150 € εφάπαξ</div>
+            </div>
+            <p class="text-xs sm:text-sm text-body-ink mb-6 font-medium">
+              Χωρίς όριο διατήρησης, τηλεφωνική υποστήριξη.
+            </p>
+            <div class="space-y-3 mb-8 text-sm text-body-ink border-t border-slate-100 pt-6">
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <span class="font-semibold text-deep-slate">60 GB χώρος</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <span class="">Διατήρηση πλήρους ανάλυσης: χωρίς όριο</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <span class="">Ετικέτες &amp; ελεγχόμενη ορατότητα ανά ομάδα πελατών</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="">Κωδικοί &amp; φιλτράρισμα βάσει παραγγελίας</span>
+                  <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-50 border border-amber-200 text-amber-soon">Σύντομα</span>
+                </div>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                <span class="">Υποστήριξη τηλέφωνο + email, Δευ–Παρ, SLA 24 ωρών</span>
+              </div>
+            </div>
+          </div>
+          <a href="#contact" class="w-full py-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-hairline text-deep-slate text-center font-bold text-sm transition-all shadow-sm">
+            Επίλεξε Business
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Founding offer thin banner -->
+      
+    </section>
+
+    <!-- ==================== SECTION 9: FOUNDING CUSTOMERS ==================== -->
+    <section class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
+      <div class="text-center max-w-2xl mx-auto">
+        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">ΙΔΡΥΤΙΚΟΙ ΠΕΛΑΤΕΣ</span>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight mb-4">
+          Το Kollekta χτίζεται μαζί με τις πρώτες επιχειρήσεις που το εμπιστεύονται.
+        </h2>
+        <p class="text-sm sm:text-base text-body-ink leading-relaxed">
+          Δεν είμαστε ακόμα χίλιοι πελάτες — και αυτό είναι το σημείο. Οι πρώτες επιχειρήσεις που μπαίνουν διαμορφώνουν το προϊόν μαζί μας, με άμεση γραμμή επικοινωνίας μαζί μας, όχι support ticket queue.
+        </p>
+      </div>
+    </section>
+
+    <!-- ==================== SECTION 10: INTEREST FORM (Final CTA) ==================== -->
+    <section id="contact" class="relative pt-20 pb-28 md:pt-28 md:pb-36 bg-deep-slate text-white">
+      <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight mb-3">
+          Έτοιμος να σταματήσεις να στέλνεις φωτογραφίες με το χέρι;
+        </h2>
+        <p class="text-sm sm:text-base text-slate-300 max-w-xl mx-auto">
+          Συμπλήρωσε τα στοιχεία σου — θα επικοινωνήσουμε μαζί σου εντός 1 εργάσιμης ημέρας για να ενεργοποιήσουμε τον λογαριασμό σου.
+        </p>
+      </div>
+
+      <!-- Overlapping Elevated White Form Card (Max 640px) -->
+      <div class="max-w-[640px] mx-auto px-4">
+        <div class="bg-white rounded-2xl p-6 sm:p-8 md:p-10 text-deep-slate shadow-2xl border border-slate-200">
+          
+          <form class="space-y-8" onsubmit="event.preventDefault(); document.getElementById('interest-form-fields').classList.add('hidden'); document.getElementById('interest-form-success').classList.remove('hidden'); return false;">
+            
+            <div id="interest-form-fields" class="space-y-8">
+              
+              <!-- Group 1: Στοιχεία εταιρείας -->
+              <div class="space-y-4">
+                <div class="flex items-center gap-2 pb-2 border-b border-slate-hairline">
+                  <span class="w-2 h-2 rounded-full bg-cobalt-blue"></span>
+                  <h3 class="text-sm font-bold uppercase tracking-wider text-deep-slate">Στοιχεία εταιρείας</h3>
+                </div>
+                
+                <div>
+                  <label class="block text-xs font-semibold text-body-ink mb-1">Επωνυμία εταιρείας *</label>
+                  <input type="text" required="" placeholder="π.χ. Atelier Anemone Fashion" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-hairline focus:border-cobalt-blue focus:ring-1 focus:ring-cobalt-blue text-sm outline-none transition-all">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-body-ink mb-1">Λογότυπο εταιρείας</label>
+                  <div class="border-2 border-dashed border-slate-200 hover:border-cobalt-blue rounded-xl p-4 text-center cursor-pointer transition-colors bg-studio-mist/60">
+                    <span class="material-symbols-outlined text-2xl text-muted-caption mb-1">cloud_upload</span>
+                    <span class="text-xs text-deep-slate font-medium block">Επιλογή αρχείου λογοτύπου (.png, .svg, .jpg)</span>
+                    <span class="text-[11px] text-muted-caption">Μπορεί να προστεθεί και αργότερα</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-body-ink mb-2">Πακέτο ενδιαφέροντος *</label>
+                  <div class="grid grid-cols-3 gap-2">
+                    <label class="cursor-pointer">
+                      <input type="radio" name="plan" value="Basic" class="peer sr-only">
+                      <div class="text-center py-2 px-3 rounded-lg border border-slate-hairline peer-checked:border-cobalt-blue peer-checked:bg-blue-50 peer-checked:text-cobalt-blue text-xs font-bold transition-all">
+                        Basic
+                      </div>
+                    </label>
+                    <label class="cursor-pointer">
+                      <input type="radio" name="plan" value="Pro" checked="" class="peer sr-only">
+                      <div class="text-center py-2 px-3 rounded-lg border border-slate-hairline peer-checked:border-cobalt-blue peer-checked:bg-blue-50 peer-checked:text-cobalt-blue text-xs font-bold transition-all">
+                        Pro
+                      </div>
+                    </label>
+                    <label class="cursor-pointer">
+                      <input type="radio" name="plan" value="Business" class="peer sr-only">
+                      <div class="text-center py-2 px-3 rounded-lg border border-slate-hairline peer-checked:border-cobalt-blue peer-checked:bg-blue-50 peer-checked:text-cobalt-blue text-xs font-bold transition-all">
+                        Business
+                      </div>
+                    </label>
+                  </div>
+                  <div class="mt-2.5 flex items-center gap-2">
+                    <input type="checkbox" id="not-sure" class="rounded border-slate-300 text-cobalt-blue focus:ring-cobalt-blue">
+                    <label for="not-sure" class="text-xs text-muted-caption cursor-pointer">Δεν είμαι σίγουρος/η ακόμα</label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Group 2: Στοιχεία υπεύθυνου λογαριασμού -->
+              <div class="space-y-4">
+                <div class="flex items-center gap-2 pb-2 border-b border-slate-hairline">
+                  <span class="w-2 h-2 rounded-full bg-cobalt-blue"></span>
+                  <h3 class="text-sm font-bold uppercase tracking-wider text-deep-slate">Στοιχεία υπεύθυνου λογαριασμού</h3>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-semibold text-body-ink mb-1">Ονοματεπώνυμο *</label>
+                  <input type="text" required="" placeholder="π.χ. Ελένη Βασιλάκη" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-hairline focus:border-cobalt-blue focus:ring-1 focus:ring-cobalt-blue text-sm outline-none transition-all">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-xs font-semibold text-body-ink mb-1">Email *</label>
+                    <input type="email" required="" placeholder="name@company.com" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-hairline focus:border-cobalt-blue focus:ring-1 focus:ring-cobalt-blue text-sm outline-none transition-all">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-semibold text-body-ink mb-1">Τηλέφωνο *</label>
+                    <input type="tel" required="" placeholder="69XXXXXXXX" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-hairline focus:border-cobalt-blue focus:ring-1 focus:ring-cobalt-blue text-sm font-mono outline-none transition-all">
+                  </div>
+                </div>
+
+                <div class="pt-2 flex items-start gap-2.5">
+                  <input type="checkbox" id="consent" required="" class="mt-0.5 rounded border-slate-300 text-cobalt-blue focus:ring-cobalt-blue">
+                  <label for="consent" class="text-xs text-body-ink leading-normal cursor-pointer">
+                    Συναινώ να επικοινωνήσετε μαζί μου σχετικά με το Kollekta. *
+                  </label>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-cobalt-blue hover:bg-blue-700 text-white font-bold text-base shadow-md hover:shadow-lg transition-all active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer">
+                <span class="">Αποστολή αίτησης</span>
+                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+              </button>
+
+            </div>
+
+            <!-- Success State Variant (Inline Elevated Thank You) -->
+            <div id="interest-form-success" class="hidden py-10 px-4 text-center flex flex-col items-center">
+              <div class="w-16 h-16 rounded-2xl bg-blue-50 text-cobalt-blue flex items-center justify-center mb-5 border border-blue-100 shadow-sm">
+                <svg class="w-8 h-8 check-draw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-bold text-deep-slate mb-3 tracking-tight">
+                Ευχαριστούμε! Θα επικοινωνήσουμε μαζί σου σύντομα.
+              </h3>
+              <p class="text-sm text-body-ink max-w-md mb-8 leading-relaxed">
+                Λάβαμε τα στοιχεία σου. Ένας εκπρόσωπος του Kollekta θα επικοινωνήσει εντός 1 εργάσιμης ημέρας για την ενεργοποίηση του δοκιμαστικού λογαριασμού σου.
+              </p>
+              <button type="button" onclick="document.getElementById('interest-form-success').classList.add('hidden'); document.getElementById('interest-form-fields').classList.remove('hidden');" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-slate-hairline hover:border-slate-300 text-xs font-semibold text-deep-slate bg-white shadow-sm hover:bg-slate-50 transition-all cursor-pointer">
+                <span class="material-symbols-outlined text-sm text-cobalt-blue">arrow_back</span>
+                <span class="">Υποβολή νέου αιτήματος</span>
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="w-full bg-deep-slate border-t border-slate-800 text-slate-400 text-sm py-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
+      
+      <!-- Brand & Tagline -->
+      <div class="md:col-span-5 flex flex-col items-start">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center p-1.5 border border-slate-700">
+            <svg viewBox="0 0 48 48" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="8" width="8" height="32" rx="2" fill="#FFFFFF"></rect>
+              <path d="M22 10L36 24V14C36 11.7909 34.2091 10 32 10H22Z" fill="#2563EB"></path>
+              <path d="M22 28L36 40H26C23.7909 40 22 38.2091 22 36V28Z" fill="#38BDF8"></path>
+              <circle cx="28" cy="24" r="3" fill="#FFFFFF"></circle>
+            </svg>
+          </div>
+          <span class="text-lg font-bold text-white tracking-tight">Kollekta</span>
+        </div>
+        <span class="text-[10px] font-mono tracking-[0.2em] text-slate-400 uppercase mb-4 block">B2B MEDIA SUITE</span>
+        <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+          Η επαγγελματική πλατφόρμα διαμοιρασμού ψηφιακών συλλογών για τη σύγχρονη χονδρική μόδα.
+        </p>
+      </div>
+
+      <!-- Links: Προϊόν -->
+      <div class="md:col-span-2 sm:col-span-4">
+        <span class="text-xs font-bold text-white uppercase tracking-wider block mb-4">Προϊόν</span>
+        <ul class="space-y-2.5 text-xs">
+          <li class=""><a href="#features" class="hover:text-white transition-colors">Λειτουργίες</a></li>
+          <li class=""><a href="#pricing" class="hover:text-white transition-colors">Τιμές</a></li>
+          <li class=""><a href="#how-it-works" class="hover:text-white transition-colors">Ασφάλεια</a></li>
+        </ul>
+      </div>
+
+      <!-- Links: Εταιρεία -->
+      <div class="md:col-span-2 sm:col-span-4">
+        <span class="text-xs font-bold text-white uppercase tracking-wider block mb-4">Εταιρεία</span>
+        <ul class="space-y-2.5 text-xs">
+          <li class=""><a href="#contact" class="hover:text-white transition-colors">Επικοινωνία</a></li>
+        </ul>
+      </div>
+
+      <!-- Links: Νομικά -->
+      <div class="md:col-span-3 sm:col-span-4">
+        <span class="text-xs font-bold text-white uppercase tracking-wider block mb-4">Νομικά</span>
+        <ul class="space-y-2.5 text-xs">
+          <li class=""><a href="#" class="hover:text-white transition-colors">Όροι χρήσης</a></li>
+          <li class=""><a href="#" class="hover:text-white transition-colors">Πολιτική απορρήτου</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Line -->
+    <div class="max-w-[1200px] mx-auto pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+      <p class="">© 2026 Kollekta. Με επιφύλαξη κάθε δικαιώματος.</p>
+      <div class="flex items-center gap-1.5 text-xs text-slate-500 font-normal"><span class="text-slate-500">Product by</span><a href="#" class="font-medium text-slate-400 hover:text-white transition-colors">Side by Side Web Studio</a></div>
+    </div>
+  </footer>
+
+
+
+
+
+
+</body></html>

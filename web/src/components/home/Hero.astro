@@ -1,0 +1,164 @@
+---
+import type { HomePage } from '../../lib/types';
+
+interface Props {
+  home: HomePage;
+}
+
+const { home } = Astro.props;
+
+const heroImages = [
+  {
+    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCNjcLB1Xq2oyAAmETGmEhpPCCe17TZp8SelAtoomNkwk6WE_GNAWK1opgw8t_eoshBwZ8Qwy8iknzXnC85uCvlqboZrzX_wtHCQZFyJNQwgw4i_llbeMI-mXNZS0NtuRLcrI_dWBsKpvz0wx-qcQC47DsraiRMenM6cNC6FLqubk8GFLm9TbvwKPvJVggDgo_eWqhSTV63V0xQkn367HroWavA1Ig7x0DIFIf6hGtKHHy3biZO8ym9fg',
+    alt: 'Look 01',
+    code: 'SUIT-101',
+    selected: true,
+  },
+  {
+    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC0rfd_o_UjQzD3CtgANT_bZNz5W-b0SxNnGuNGi3KT0KPQ60nX_v2TZPl7GhoxMLyAqPcnXzjLzv6kT1_ycHgR75nrgDaI0_tFSUf_GubkeLjIOaGx2rPUhAlefcto325BgfCIsXqBCpcpuH8OGsUl9q58U7WN4zPtRv3g1xJ9g8-OYORpyBqtcZupxXL-Tj27rW2T4FUsXpdwl3kNNJrARVbBOjJRL6LafnfHpU7TbBc3oDChu5iciQ',
+    alt: 'Look 02',
+    code: 'DRS-305',
+    selected: true,
+  },
+  {
+    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAqn7JswoWqMJd3Ph5JTBw2pSWq8aDnKm4x1v115ldryUiJQ7i1fa4nWyBZnaKjdQT5815XshNHPnZvXjbTspEXpp4R957pvCS6nQa7nTL_Yd4AV13F_KoBDm6GNvnCvzBGNrd7bkheiPD4cXTGvQ9WKMThvRTpQaOdzPg07XJvlDqYGe8hyFcrhTYlXjYllSBOqGPoPppdwhNzLd1T68Di-CUU-fqHecv04FJL5eu1j4G9yBT9NJ2y4g',
+    alt: 'Look 03',
+    code: 'BLAZ-202',
+    selected: true,
+  },
+  {
+    src: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB2ul_bqH1DHmZdQvkUQike4DoP4nWMT2ejr6MghHOfc4LKQ-zlnUN4JLejrP4jJmfuRBRIMjVy8cY3DLTLLzH6d-uSxj28hH7FkJ-ENo-PQ8iytTQ5U-300c8zIG3U7wIqMw4P2s_retK2u3dOS_nli6io5gB-OrIvy3cxHgOYAdSOEykqlQHgL8QME82sn8vgZULWyrO5HxZSQRrCl64utVKRjj0PPEc_CwmzqQhxbdEetsNOsp_jWA',
+    alt: 'Look 04',
+    code: 'ACC-104',
+    selected: false,
+  },
+];
+---
+
+<section class="relative pt-12 pb-20 md:pt-20 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    <div class="lg:col-span-7 flex flex-col items-start">
+      {
+        home.heroBadge && (
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-cobalt-blue text-xs font-bold tracking-wider uppercase mb-5">
+            <span class="w-1.5 h-1.5 rounded-full bg-cobalt-blue animate-pulse"></span>
+            {home.heroBadge}
+          </div>
+        )
+      }
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-deep-slate tracking-tight leading-[1.15] mb-6">
+        {home.heroTitle ?? ''}
+      </h1>
+
+      {
+        home.heroDescription && (
+          <p class="text-base sm:text-lg md:text-[18px] text-body-ink leading-relaxed mb-8 max-w-xl">
+            {home.heroDescription}
+          </p>
+        )
+      }
+
+      <div class="flex flex-wrap items-center gap-4 w-full sm:w-auto mb-6">
+        {
+          home.heroPrimaryCta && (
+            <a
+              href="#contact"
+              class="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-cobalt-blue hover:bg-blue-700 text-white font-semibold text-base shadow-sm hover:shadow-md transition-all active:scale-[0.98]"
+            >
+              {home.heroPrimaryCta}
+            </a>
+          )
+        }
+        {
+          home.heroSecondaryCta && (
+            <a
+              href="#pricing"
+              class="w-full sm:w-auto text-center px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-hairline text-deep-slate font-semibold text-base shadow-sm hover:border-slate-300 transition-all"
+            >
+              {home.heroSecondaryCta}
+            </a>
+          )
+        }
+      </div>
+
+      {
+        home.heroTrustLine && (
+          <p class="text-[13px] text-muted-caption flex items-center gap-2">
+            <span class="material-symbols-outlined text-base text-sky-cyan">verified</span>
+            {home.heroTrustLine}
+          </p>
+        )
+      }
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <div class="absolute -inset-4 bg-gradient-to-tr from-blue-100/40 via-sky-50/20 to-transparent rounded-3xl blur-2xl -z-10"></div>
+
+      <div class="floating-hero bg-white rounded-2xl border border-slate-hairline shadow-floating-mockup p-4 sm:p-5 relative transition-transform">
+        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-hairline">
+          <div class="flex items-center gap-1.5">
+            <div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+            <div class="w-2.5 h-2.5 rounded-full bg-slate-200"></div>
+          </div>
+          <div class="text-[11px] font-mono text-muted-caption bg-studio-mist px-2 py-0.5 rounded border border-slate-hairline">
+            {home.heroMockupDomain ?? 'portal.anemone-fashion.gr'}
+          </div>
+          <div class="text-[11px] font-semibold text-deep-slate flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Live
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between mb-3 px-1">
+          <div>
+            <span class="text-[10px] font-bold text-muted-caption uppercase tracking-wider block">Συλλογή</span>
+            <h4 class="text-xs sm:text-sm font-bold text-deep-slate">{home.heroMockupCollection ?? 'Spring / Summer 2025'}</h4>
+          </div>
+          <span class="text-[11px] text-cobalt-blue font-medium cursor-pointer">Επιλογή όλων</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5 relative">
+          {
+            heroImages.map((tile) => (
+              <div
+                class:list={[
+                  'relative rounded-lg overflow-hidden bg-white shadow-sm aspect-[4/5]',
+                  tile.selected ? 'border-2 border-sky-cyan' : 'border border-slate-hairline',
+                ]}
+              >
+                <img src={tile.src} alt={tile.alt} class="w-full h-full object-cover" loading="lazy" />
+                {
+                  tile.selected && (
+                    <div class="absolute top-2 left-2 w-5 h-5 rounded-full bg-sky-cyan text-white flex items-center justify-center text-xs shadow-md">
+                      <span class="material-symbols-outlined text-[14px]">check</span>
+                    </div>
+                  )
+                }
+                <div class="absolute bottom-1.5 left-1.5 px-1.5 py-0.5 rounded bg-white/90 backdrop-blur-sm text-[9px] font-mono font-semibold text-deep-slate">
+                  {tile.code}
+                </div>
+              </div>
+            ))
+          }
+
+          <div class="absolute -bottom-3 left-2 right-2 bg-deep-slate text-white rounded-xl px-3 py-2.5 flex items-center justify-between shadow-xl border border-slate-700 z-10">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-sky-cyan"></span>
+              <span class="text-xs font-semibold">3 επιλεγμένες</span>
+              <span class="text-[10px] text-slate-400 font-mono hidden sm:inline">• ~48 MB</span>
+            </div>
+            <button type="button" class="px-3 py-1 rounded-lg bg-cobalt-blue text-white text-xs font-bold flex items-center gap-1 shadow-sm">
+              <span class="material-symbols-outlined text-[13px]">download</span>
+              Λήψη
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute -top-3 -right-3 bg-white px-2.5 py-1 rounded-full border border-slate-hairline shadow-sm text-[10px] font-mono font-semibold text-muted-caption hidden sm:block">
+        UI FRAME SPEC • 4:5
+      </div>
+    </div>
+  </div>
+</section>

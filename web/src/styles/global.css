@@ -1,0 +1,69 @@
+@import "tailwindcss";
+@import "material-symbols/outlined.css";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-deep-slate: #0f172a;
+  --color-cobalt-blue: #2563eb;
+  --color-sky-cyan: #0284c7;
+  --color-studio-mist: #f8fafc;
+  --color-slate-hairline: #e2e8f0;
+  --color-muted-caption: #64748b;
+  --color-body-ink: #334155;
+  --color-amber-soon: #f59e0b;
+  --color-pure-white: #ffffff;
+  --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --shadow-card-rest: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
+  --shadow-card-hover: 0 12px 24px -4px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.04);
+  --shadow-pro-elevated: 0 20px 35px -8px rgba(37, 99, 235, 0.18), 0 8px 16px -4px rgba(15, 23, 42, 0.06);
+  --shadow-floating-mockup: 0 25px 50px -12px rgba(15, 23, 42, 0.14), 0 0 0 1px rgba(226, 232, 240, 0.8);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  vertical-align: middle;
+}
+
+@keyframes floatGentle {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0.4deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-0.2deg);
+  }
+}
+
+.floating-hero {
+  animation: floatGentle 7s ease-in-out infinite;
+}
+
+@keyframes checkAnim {
+  from {
+    stroke-dashoffset: 50;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.check-draw {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 0;
+  animation: checkAnim 1.2s ease-out forwards;
+}
+
+::selection {
+  background-color: #2563eb;
+  color: #ffffff;
+}

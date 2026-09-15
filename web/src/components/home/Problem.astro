@@ -1,0 +1,60 @@
+---
+import type { HomePage } from '../../lib/types';
+
+interface Props {
+  home: HomePage;
+}
+
+const { home } = Astro.props;
+
+const footerToneClass: Record<string, string> = {
+  rose: 'bg-rose-500',
+  amber: 'bg-amber-500',
+  emerald: 'bg-emerald-500',
+  slate: 'bg-slate-400',
+};
+---
+
+<section class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
+  <div class="text-center max-w-2xl mx-auto mb-16">
+    {
+      home.problemEyebrow && (
+        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">
+          {home.problemEyebrow}
+        </span>
+      )
+    }
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight">
+      {home.problemTitle ?? ''}
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {
+      (home.problemCards ?? []).map((card) => (
+        <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-hairline shadow-card-rest hover:shadow-card-hover transition-all flex flex-col justify-between group">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-hairline flex items-center justify-center text-deep-slate mb-5 group-hover:border-cobalt-blue/30 transition-colors">
+              <span class="material-symbols-outlined text-2xl text-cobalt-blue">{card.icon ?? 'help'}</span>
+            </div>
+            <h3 class="text-lg font-bold text-deep-slate mb-3">{card.title ?? ''}</h3>
+            <p class="text-sm text-body-ink leading-relaxed">{card.description ?? ''}</p>
+          </div>
+          {
+            card.footer && (
+              <div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-xs text-muted-caption font-mono">
+                <span
+                  class:list={[
+                    'w-1.5 h-1.5 rounded-full',
+                    footerToneClass[card.footerTone ?? 'slate'] ?? footerToneClass.slate,
+                  ]}
+                />
+                {card.footer}
+              </div>
+            )
+          }
+        </div>
+      ))
+    }
+  </div>
+</section>

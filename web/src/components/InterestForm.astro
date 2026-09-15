@@ -1,0 +1,192 @@
+---
+interface Props {
+  successTitle?: string;
+  successDescription?: string;
+}
+
+const {
+  successTitle = 'Ευχαριστούμε! Θα επικοινωνήσουμε μαζί σου σύντομα.',
+  successDescription = 'Λάβαμε τα στοιχεία σου. Ένας εκπρόσωπος του Kollekta θα επικοινωνήσει εντός 1 εργάσιμης ημέρας.',
+} = Astro.props;
+---
+
+<div class="bg-white rounded-2xl p-6 sm:p-8 md:p-10 text-deep-slate shadow-2xl border border-slate-200">
+  <form id="interest-form" class="space-y-8" novalidate>
+    <div id="interest-form-fields" class="space-y-8">
+      <div class="space-y-4">
+        <div class="flex items-center gap-2 pb-2 border-b border-slate-hairline">
+          <span class="w-2 h-2 rounded-full bg-cobalt-blue"></span>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-deep-slate">Στοιχεία εταιρείας</h3>
+        </div>
+
+        <div>
+          <label for="companyName" class="block text-xs font-semibold text-body-ink mb-1">Επωνυμία εταιρείας *</label>
+          <input
+            id="companyName"
+            name="companyName"
+            type="text"
+            required
+            placeholder="π.χ. Atelier Anemone Fashion"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-hairline focus:border-cobalt-blue focus:ring-1 focus:ring-cobalt-blue text-sm outline-none transition-all"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-body-ink mb-2">Πακέτο ενδιαφέροντος *</label>
+          <div class="grid grid-cols-3 gap-2">
+            {['Basic', 'Pro', 'Business'].map((plan, i) => (
+              <label class="cursor-pointer">
+                <input type="radio" name="plan" value={plan} class="peer sr-only" checked={plan === 'Pro'} required={i === 0} />
+                <div class="text-center py-2 px-3 rounded-lg border border-slate-hairline peer-checked:border-cobalt-blue peer-checked:bg-blue-50 peer-checked:text-cobalt-blue text-xs font-bold transition-all">
+                  {plan}
+                </div>
+              </label>
+            ))}
+          </div>
+          <div class="mt-2.5 flex items-center gap-2">
+            <input type="checkbox" id="planUnsure" name="planUnsure" class="rounded border-slate-300 text-cobalt-blue focus:ring-cobalt-blue" />
+            <label for="planUnsure" class="text-xs text-muted-caption cursor-pointer">Δεν είμαι σίγουρος/η ακόμα</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="flex items-center gap-2 pb-2 border-b border-slate-hairline">
+          <span class="w-2 h-2 rounded-full bg-cobalt-blue"></span>
+          <h3 class="text-sm font-bold uppercase tracking-wider text-deep-slate">Στοιχεία υπεύθυνου λογαριασμού</h3>
+        </div>
+
+        <div>
+          <label for="fullName" class="block text-xs font-semibold text-body-ink mb-1">Ονοματεπώνυμο *</label>
+          <input
+            id="fullName"
+            name="fullName"
+            type="text"
+            required
+            placeholder="π.χ. Ελένη Βασιλάκη"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-hairline focus:border-cobalt-blue focus:ring-1 focus:ring-cobalt-blue text-sm outline-none transition-all"
+          />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="email" class="block text-xs font-semibold text-body-ink mb-1">Email *</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="name@company.com"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-slate-hairline focus:border-cobalt-blue focus:ring-1 focus:ring-cobalt-blue text-sm outline-none transition-all"
+            />
+          </div>
+          <div>
+            <label for="phone" class="block text-xs font-semibold text-body-ink mb-1">Τηλέφωνο *</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              required
+              placeholder="69XXXXXXXX"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-slate-hairline focus:border-cobalt-blue focus:ring-1 focus:ring-cobalt-blue text-sm font-mono outline-none transition-all"
+            />
+          </div>
+        </div>
+
+        <div class="pt-2 flex items-start gap-2.5">
+          <input type="checkbox" id="consent" name="consent" required class="mt-0.5 rounded border-slate-300 text-cobalt-blue focus:ring-cobalt-blue" />
+          <label for="consent" class="text-xs text-body-ink leading-normal cursor-pointer">
+            Συναινώ να επικοινωνήσετε μαζί μου σχετικά με το Kollekta. *
+          </label>
+        </div>
+      </div>
+
+      <p id="interest-form-error" class="hidden text-sm text-rose-600"></p>
+
+      <button
+        type="submit"
+        id="interest-submit"
+        class="w-full py-3.5 px-6 rounded-xl bg-cobalt-blue hover:bg-blue-700 text-white font-bold text-base shadow-md hover:shadow-lg transition-all active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+      >
+        <span>Αποστολή αίτησης</span>
+        <span class="material-symbols-outlined text-lg">arrow_forward</span>
+      </button>
+    </div>
+
+    <div id="interest-form-success" class="hidden py-10 px-4 text-center flex flex-col items-center">
+      <div class="w-16 h-16 rounded-2xl bg-blue-50 text-cobalt-blue flex items-center justify-center mb-5 border border-blue-100 shadow-sm">
+        <svg class="w-8 h-8 check-draw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h3 class="text-xl sm:text-2xl font-bold text-deep-slate mb-3 tracking-tight">{successTitle}</h3>
+      <p class="text-sm text-body-ink max-w-md mb-8 leading-relaxed">{successDescription}</p>
+      <button
+        type="button"
+        id="interest-reset"
+        class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-slate-hairline hover:border-slate-300 text-xs font-semibold text-deep-slate bg-white shadow-sm hover:bg-slate-50 transition-all cursor-pointer"
+      >
+        <span class="material-symbols-outlined text-sm text-cobalt-blue">arrow_back</span>
+        Υποβολή νέου αιτήματος
+      </button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('interest-form') as HTMLFormElement | null;
+  const fields = document.getElementById('interest-form-fields');
+  const success = document.getElementById('interest-form-success');
+  const errorEl = document.getElementById('interest-form-error');
+  const submitBtn = document.getElementById('interest-submit') as HTMLButtonElement | null;
+  const resetBtn = document.getElementById('interest-reset');
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    errorEl?.classList.add('hidden');
+    if (submitBtn) submitBtn.disabled = true;
+
+    const data = new FormData(form);
+    const payload = {
+      companyName: String(data.get('companyName') || ''),
+      plan: String(data.get('plan') || 'Pro'),
+      planUnsure: data.get('planUnsure') === 'on',
+      fullName: String(data.get('fullName') || ''),
+      email: String(data.get('email') || ''),
+      phone: String(data.get('phone') || ''),
+      consent: data.get('consent') === 'on',
+    };
+
+    try {
+      const res = await fetch('/api/interest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || 'Η αποστολή απέτυχε. Δοκιμάστε ξανά.');
+      }
+      fields?.classList.add('hidden');
+      success?.classList.remove('hidden');
+      form.reset();
+    } catch (err) {
+      if (errorEl) {
+        errorEl.textContent = err instanceof Error ? err.message : 'Σφάλμα αποστολής';
+        errorEl.classList.remove('hidden');
+      }
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
+  });
+
+  resetBtn?.addEventListener('click', () => {
+    success?.classList.add('hidden');
+    fields?.classList.remove('hidden');
+  });
+</script>

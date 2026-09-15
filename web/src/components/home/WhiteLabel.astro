@@ -1,0 +1,94 @@
+---
+import type { HomePage } from '../../lib/types';
+
+interface Props {
+  home: HomePage;
+}
+
+const { home } = Astro.props;
+
+const imgLook01 =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuCNjcLB1Xq2oyAAmETGmEhpPCCe17TZp8SelAtoomNkwk6WE_GNAWK1opgw8t_eoshBwZ8Qwy8iknzXnC85uCvlqboZrzX_wtHCQZFyJNQwgw4i_llbeMI-mXNZS0NtuRLcrI_dWBsKpvz0wx-qcQC47DsraiRMenM6cNC6FLqubk8GFLm9TbvwKPvJVggDgo_eWqhSTV63V0xQkn367HroWavA1Ig7x0DIFIf6hGtKHHy3biZO8ym9fg';
+const imgLook02 =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuC0rfd_o_UjQzD3CtgANT_bZNz5W-b0SxNnGuNGi3KT0KPQ60nX_v2TZPl7GhoxMLyAqPcnXzjLzv6kT1_ycHgR75nrgDaI0_tFSUf_GubkeLjIOaGx2rPUhAlefcto325BgfCIsXqBCpcpuH8OGsUl9q58U7WN4zPtRv3g1xJ9g8-OYORpyBqtcZupxXL-Tj27rW2T4FUsXpdwl3kNNJrARVbBOjJRL6LafnfHpU7TbBc3oDChu5iciQ';
+
+const portalMockups = [
+  {
+    brand: 'MAISON ÉTÉ',
+    collection: 'Lookbook FW25',
+    domain: 'maisonete.kollekta.gr',
+    image: imgLook01,
+  },
+  {
+    brand: 'ANEMONE ATHENS',
+    collection: 'Resort 2026',
+    domain: 'anemone.kollekta.gr',
+    image: imgLook02,
+  },
+];
+---
+
+<section class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-5">
+      {
+        home.whiteLabelEyebrow && (
+          <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">
+            {home.whiteLabelEyebrow}
+          </span>
+        )
+      }
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight mb-4">
+        {home.whiteLabelTitle ?? ''}
+      </h2>
+      {
+        home.whiteLabelDescription && (
+          <p class="text-base text-body-ink leading-relaxed">{home.whiteLabelDescription}</p>
+        )
+      }
+    </div>
+
+    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {
+        portalMockups.map((portal) => (
+          <div class="bg-white rounded-xl p-4 border border-slate-hairline shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-6 rounded bg-deep-slate flex items-center justify-center p-1 text-white">
+                    <svg viewBox="0 0 48 48" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <rect x="6" y="8" width="8" height="32" rx="2" fill="#FFFFFF"></rect>
+                      <path d="M22 10L36 24V14C36 11.7909 34.2091 10 32 10H22Z" fill="#2563EB"></path>
+                      <path d="M22 28L36 40H26C23.7909 40 22 38.2091 22 36V28Z" fill="#38BDF8"></path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-col">
+                    <span class="text-[11px] font-bold text-deep-slate leading-none">Kollekta</span>
+                    <span class="text-[8px] text-muted-caption font-mono">B2B PORTAL</span>
+                  </div>
+                </div>
+                <div class="text-right">
+                  <span class="text-[10px] font-bold text-deep-slate block leading-none">{portal.brand}</span>
+                  <span class="text-[8px] text-cobalt-blue font-semibold">Εξουσιοδοτημένος Συνεργάτης</span>
+                </div>
+              </div>
+              <div class="p-3 bg-studio-mist rounded-lg mb-3 border border-slate-100">
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-[10px] font-semibold text-deep-slate">{portal.collection}</span>
+                  <span class="text-[9px] font-mono text-muted-caption">{portal.domain}</span>
+                </div>
+                <div class="h-20 bg-slate-200 rounded overflow-hidden relative">
+                  <img src={portal.image} alt="" class="w-full h-full object-cover" loading="lazy" />
+                </div>
+              </div>
+            </div>
+            <div class="text-[10px] text-muted-caption font-mono flex items-center justify-between pt-1 border-t border-slate-50">
+              <span class="text-body-ink font-medium">Εμφανές λογότυπο συνεργάτη</span>
+              <span class="text-cobalt-blue">{portal.domain}</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

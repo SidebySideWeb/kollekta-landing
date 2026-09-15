@@ -1,0 +1,57 @@
+---
+import '../styles/global.css';
+import '@fontsource/public-sans/400.css';
+import '@fontsource/public-sans/500.css';
+import '@fontsource/public-sans/600.css';
+import '@fontsource/public-sans/700.css';
+import '@fontsource/public-sans/800.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/600.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import type { SiteSettings } from '../lib/types';
+
+interface Props {
+  title: string;
+  description?: string;
+  settings: SiteSettings;
+  headerVariant?: 'default' | 'minimal';
+  footerVariant?: 'dark' | 'light';
+  showBackLink?: boolean;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description = '',
+  settings,
+  headerVariant = 'default',
+  footerVariant = 'dark',
+  showBackLink = false,
+  noIndex = false,
+} = Astro.props;
+
+const siteUrl = import.meta.env.SITE_URL || 'https://www.kollekta.gr';
+---
+
+<!doctype html>
+<html lang="el" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={new URL(Astro.url.pathname, siteUrl).toString()} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="el_GR" />
+  </head>
+  <body class="bg-studio-mist text-body-ink font-sans antialiased min-h-screen flex flex-col">
+    <SiteHeader settings={settings} variant={headerVariant} showBackLink={showBackLink} />
+    <slot />
+    <SiteFooter settings={settings} variant={footerVariant} />
+  </body>
+</html>

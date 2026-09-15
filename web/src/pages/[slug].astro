@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContentDocument from '../components/ContentDocument.astro';
+import { getContentPageBySlug, getSiteSettings } from '../lib/queries';
+import { fetchWithFallback } from '../lib/fetch-with-fallback';
+import { defaultSiteSettings, defaultTermsPage } from '../lib/fallbacks';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+if (!slug) {
+  return Astro.rewrite('/404');
+}
+
+const [settingsRaw, pageRaw] = await Promise.all([
+  fetchWithFallback(() => getSiteSettings(), null, 'siteSettings'),
+  fetchWithFallback(() => getContentPageBySlug(slug), null, `contentPage:${slug}`),
+]);
+
+const settings = { ...defaultSiteSettings, ...settingsRaw };
+const page =
+  pageRaw ??
+  (slug === 'terms' ? defaultTermsPage : null);
+
+if (!page) {
+  return Astro.rewrite('/404');
+}
+
+const contentSettings = {
+  ...settings,
+  navLinks: (settings.navLinks ?? []).map((link) => ({
+    ...link,
+    href: link.href.startsWith('#') ? `/${link.href}` : link.href,
+  })),
+  headerCtaHref: settings.headerCtaHref?.startsWith('#')
+    ? `/${settings.headerCtaHref}`
+    : settings.headerCtaHref,
+  productLinks: (settings.productLinks ?? []).map((link) => ({
+    ...link,
+    href: link.href.startsWith('#') ? `/${link.href}` : link.href,
+  })),
+  companyLinks: (settings.companyLinks ?? []).map((link) => ({
+    ...link,
+    href: link.href.startsWith('#') ? `/${link.href}` : link.href,
+  })),
+};
+
+const title = page.seo?.title ?? `${page.title} — Kollekta`;
+const description = page.seo?.description ?? page.intro ?? '';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  settings={contentSettings}
+  showBackLink={true}
+  noIndex={page.seo?.noIndex}
+>
+  <ContentDocument page={page} />
+</BaseLayout>

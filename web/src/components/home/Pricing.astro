@@ -1,0 +1,115 @@
+---
+import type { HomePage } from '../../lib/types';
+
+interface Props {
+  home: HomePage;
+}
+
+const { home } = Astro.props;
+---
+
+<section id="pricing" class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60">
+  <div class="text-center max-w-2xl mx-auto mb-16">
+    {
+      home.pricingEyebrow && (
+        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">
+          {home.pricingEyebrow}
+        </span>
+      )
+    }
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight mb-3">
+      {home.pricingTitle ?? ''}
+    </h2>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-10">
+    {
+      (home.pricingPlans ?? []).map((plan) => (
+        <div
+          class:list={[
+            'bg-white rounded-2xl flex flex-col justify-between relative',
+            plan.highlighted
+              ? 'p-8 border-2 border-cobalt-blue shadow-pro-elevated lg:-translate-y-3'
+              : 'p-7 border border-slate-hairline shadow-card-rest',
+          ]}
+        >
+          {
+            plan.highlighted && plan.highlightLabel && (
+              <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-cobalt-blue text-white text-[11px] font-bold uppercase tracking-wider shadow-sm flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">star</span> {plan.highlightLabel}
+              </div>
+            )
+          }
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span
+                class:list={[
+                  'text-sm font-bold uppercase tracking-wider',
+                  plan.highlighted ? 'text-cobalt-blue' : 'text-deep-slate',
+                ]}
+              >
+                {plan.name ?? ''}
+              </span>
+            </div>
+            <div class="mb-4">
+              <div class="text-3xl sm:text-4xl font-extrabold text-deep-slate">
+                {plan.price ?? ''}
+                {
+                  plan.period && (
+                    <span class="text-base font-normal text-muted-caption">{plan.period}</span>
+                  )
+                }
+              </div>
+              {
+                plan.billingNote && (
+                  <div class="text-xs text-muted-caption font-mono mt-1">{plan.billingNote}</div>
+                )
+              }
+            </div>
+            {
+              plan.tagline && (
+                <p class="text-xs sm:text-sm text-body-ink mb-6 font-medium">{plan.tagline}</p>
+              )
+            }
+            <div class="space-y-3 mb-8 text-sm text-body-ink border-t border-slate-100 pt-6">
+              {
+                (plan.features ?? []).map((feature) => (
+                  <div class="flex items-start gap-2.5">
+                    <span class="material-symbols-outlined text-cobalt-blue text-lg">check_circle</span>
+                    {
+                      feature.soonBadge ? (
+                        <div class="flex items-center gap-2 flex-wrap">
+                          <span class:list={[feature.emphasize && 'font-semibold text-deep-slate']}>
+                            {feature.text ?? ''}
+                          </span>
+                          <span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-50 border border-amber-200 text-amber-soon">
+                            Σύντομα
+                          </span>
+                        </div>
+                      ) : (
+                        <span class:list={[feature.emphasize && 'font-semibold text-deep-slate']}>
+                          {feature.text ?? ''}
+                        </span>
+                      )
+                    }
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+          <a
+            href="#contact"
+            class:list={[
+              'w-full text-center font-bold text-sm transition-all',
+              plan.highlighted
+                ? 'py-3.5 rounded-xl bg-cobalt-blue hover:bg-blue-700 text-white shadow-md active:scale-[0.98]'
+                : 'py-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-hairline text-deep-slate shadow-sm',
+            ]}
+          >
+            {plan.ctaLabel ?? 'Εκδήλωσε ενδιαφέρον'}
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</section>

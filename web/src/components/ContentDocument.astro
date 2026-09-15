@@ -1,0 +1,112 @@
+---
+import type { PortableBlock } from '../lib/types';
+import PortableBody from './PortableBody.astro';
+
+interface Props {
+  page: import('../lib/types').ContentPage;
+}
+
+const { page } = Astro.props;
+const sections = page.sections ?? [];
+
+function chipHtml(text?: string) {
+  return (text ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+}
+---
+
+<section class="bg-white border-b border-slate-hairline py-12 sm:py-16">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    {
+      page.badge && (
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-studio-mist border border-slate-hairline text-[11px] font-semibold tracking-wider text-cobalt-blue uppercase mb-4">
+          <span class="w-1.5 h-1.5 rounded-full bg-cobalt-blue" />
+          {page.badge}
+        </div>
+      )
+    }
+    <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-deep-slate mb-3">{page.title}</h1>
+    {
+      page.intro && (
+        <p class="text-sm sm:text-base text-muted-caption leading-relaxed max-w-2xl">{page.intro}</p>
+      )
+    }
+    {
+      (page.metaChips?.length ?? 0) > 0 && (
+        <div class="flex flex-wrap items-center gap-6 mt-6 pt-6 border-t border-slate-hairline text-xs text-muted-caption font-medium">
+          {page.metaChips!.map((chip) => (
+            <div class="flex items-center gap-1.5">
+              {chip.icon && (
+                <span class="material-symbols-outlined text-[16px] text-sky-cyan">{chip.icon}</span>
+              )}
+              <span set:html={chipHtml(chip.text)} />
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<main class="flex-grow py-10 sm:py-14">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      <aside class="md:col-span-4 sticky top-24 hidden md:block">
+        <div class="bg-white border border-slate-hairline rounded-xl p-5 shadow-sm">
+          <h3 class="text-xs font-bold uppercase tracking-wider text-deep-slate mb-3 flex items-center gap-2">
+            <span class="material-symbols-outlined text-[16px] text-cobalt-blue">menu_book</span>
+            {page.tocTitle ?? 'Περιεχόμενα'}
+          </h3>
+          <nav class="flex flex-col space-y-2 text-xs font-medium text-muted-caption">
+            {
+              sections.map((section) => (
+                <a
+                  href={`#${section.anchor ?? `section-${section.number}`}`}
+                  class="hover:text-cobalt-blue hover:translate-x-0.5 transition-all py-1 border-l-2 border-transparent hover:border-cobalt-blue pl-2.5"
+                >
+                  {section.number}. {section.title}
+                </a>
+              ))
+            }
+          </nav>
+          {
+            (page.dpaNoteTitle || page.dpaNoteText) && (
+              <div class="mt-6 pt-5 border-t border-slate-hairline">
+                <div class="p-3 rounded-lg bg-studio-mist border border-slate-hairline text-[11px] text-muted-caption">
+                  {page.dpaNoteTitle && (
+                    <span class="font-bold text-deep-slate block mb-1">{page.dpaNoteTitle}</span>
+                  )}
+                  {page.dpaNoteText}
+                </div>
+              </div>
+            )
+          }
+        </div>
+      </aside>
+
+      <div class="md:col-span-8 bg-white border border-slate-hairline rounded-xl p-6 sm:p-10 shadow-sm space-y-10">
+        {
+          sections.map((section, index) => (
+            <>
+              {index > 0 && <hr class="border-slate-hairline" />}
+              <section id={section.anchor ?? `section-${section.number}`} class="scroll-mt-24">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="w-6 h-6 rounded-full bg-blue-50 text-cobalt-blue text-xs font-bold flex items-center justify-center">
+                    {section.number}
+                  </span>
+                  <h2 class="text-lg sm:text-xl font-bold text-deep-slate">{section.title}</h2>
+                </div>
+                <div class="space-y-3 text-sm leading-relaxed text-body-ink">
+                  <PortableBody blocks={section.body as PortableBlock[]} />
+                </div>
+              </section>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</main>
