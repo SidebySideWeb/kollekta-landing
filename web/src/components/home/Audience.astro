@@ -1,0 +1,41 @@
+---
+import type { HomePage } from '../../lib/types';
+
+interface Props {
+  home: HomePage;
+}
+
+const { home } = Astro.props;
+---
+
+<section
+  id="audience"
+  class="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-[1200px] mx-auto border-t border-slate-hairline/60"
+>
+  <div class="reveal text-center max-w-2xl mx-auto mb-16">
+    {
+      home.audienceEyebrow && (
+        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-3">
+          {home.audienceEyebrow}
+        </span>
+      )
+    }
+    <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate tracking-tight">
+      {home.audienceTitle ?? ''}
+    </h2>
+  </div>
+
+  <div class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 gap-6">
+    {
+      (home.audienceCards ?? []).map((card) => (
+        <div class="reveal card-lift bg-white rounded-2xl p-6 sm:p-7 border border-slate-hairline shadow-card-rest group">
+          <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-hairline flex items-center justify-center mb-5 group-hover:border-cobalt-blue/30 transition-colors">
+            <span class="material-symbols-outlined text-2xl text-cobalt-blue">{card.icon ?? 'groups'}</span>
+          </div>
+          <h3 class="text-lg font-bold text-deep-slate mb-3">{card.title ?? ''}</h3>
+          <p class="text-sm text-body-ink leading-relaxed">{card.description ?? ''}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

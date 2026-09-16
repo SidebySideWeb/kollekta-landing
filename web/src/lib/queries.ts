@@ -22,6 +22,8 @@ const homePageFields = `{
   heroTrustLine, heroMockupDomain, heroMockupCollection,
   problemEyebrow, problemTitle,
   problemCards[]{ icon, title, description, footer, footerTone },
+  audienceEyebrow, audienceTitle,
+  audienceCards[]{ icon, title, description },
   solutionEyebrow, solutionTitle,
   solutionSteps[]{ number, title, description },
   featuresEyebrow, featuresTitle,
@@ -36,6 +38,7 @@ const homePageFields = `{
     features[]{ text, emphasize, soonBadge },
     ctaLabel, highlighted, highlightLabel
   },
+  pricingOfferBanner,
   foundingEyebrow, foundingTitle, foundingDescription,
   contactTitle, contactDescription, contactSuccessTitle, contactSuccessDescription,
   seo{ title, description, noIndex }

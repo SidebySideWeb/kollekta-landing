@@ -7,6 +7,7 @@ export const homePage = defineType({
   groups: [
     {name: 'hero', title: 'Hero'},
     {name: 'problem', title: 'Πρόβλημα'},
+    {name: 'audience', title: 'Για ποιον είναι'},
     {name: 'solution', title: 'Λύση'},
     {name: 'features', title: 'Λειτουργίες'},
     {name: 'stats', title: 'Στατιστικό'},
@@ -35,6 +36,16 @@ export const homePage = defineType({
       type: 'array',
       of: [{type: 'iconCard'}],
       group: 'problem',
+    }),
+
+    defineField({name: 'audienceEyebrow', title: 'Eyebrow', type: 'string', group: 'audience'}),
+    defineField({name: 'audienceTitle', title: 'Τίτλος', type: 'text', rows: 2, group: 'audience'}),
+    defineField({
+      name: 'audienceCards',
+      title: 'Κάρτες κοινού',
+      type: 'array',
+      of: [{type: 'iconCard'}],
+      group: 'audience',
     }),
 
     defineField({name: 'solutionEyebrow', title: 'Eyebrow', type: 'string', group: 'solution'}),
@@ -90,6 +101,12 @@ export const homePage = defineType({
       title: 'Πακέτα',
       type: 'array',
       of: [{type: 'pricingPlan'}],
+      group: 'pricing',
+    }),
+    defineField({
+      name: 'pricingOfferBanner',
+      title: 'Banner προσφοράς',
+      type: 'string',
       group: 'pricing',
     }),
 

@@ -118,6 +118,9 @@ export interface HomePage {
   problemEyebrow?: string;
   problemTitle?: string;
   problemCards?: IconCard[];
+  audienceEyebrow?: string;
+  audienceTitle?: string;
+  audienceCards?: IconCard[];
   solutionEyebrow?: string;
   solutionTitle?: string;
   solutionSteps?: StepItem[];
@@ -138,6 +141,7 @@ export interface HomePage {
   pricingEyebrow?: string;
   pricingTitle?: string;
   pricingPlans?: PricingPlan[];
+  pricingOfferBanner?: string;
   foundingEyebrow?: string;
   foundingTitle?: string;
   foundingDescription?: string;

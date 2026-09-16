@@ -113,4 +113,12 @@ const { home } = Astro.props;
       ))
     }
   </div>
+
+  {
+    home.pricingOfferBanner && (
+      <div class="reveal mt-8 rounded-xl border border-cobalt-blue/20 bg-blue-50/70 px-5 py-4 text-center text-sm text-body-ink leading-relaxed">
+        {home.pricingOfferBanner}
+      </div>
+    )
+  }
 </section>
