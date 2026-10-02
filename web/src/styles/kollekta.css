@@ -26,16 +26,12 @@
   .h2{font-size:32px; line-height:1.18;}
   @media(max-width:720px){.h2{font-size:26px;}}
   .lede{font-size:17px; color:var(--body); max-width:620px; line-height:1.7;}
-  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:14px; border-radius:999px; padding:13px 26px; cursor:pointer; border:1px solid transparent; transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease; text-decoration:none;}
-  .btn:active{transform:scale(.97);}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; font-weight:700; font-size:14px; border-radius:999px; padding:13px 26px; cursor:pointer; border:1px solid transparent; transition:translate .15s ease, scale .15s ease, box-shadow .15s ease, opacity .15s ease, background .15s ease; text-decoration:none;}
   .btn-primary{background:var(--amber); color:#fff; box-shadow:0 10px 24px -8px rgba(255,107,53,.55);}
-  .btn-primary:hover{background:var(--amber-dark); transform:translateY(-1px);}
   .btn-ghost{background:transparent; color:var(--ink); border-color:var(--hairline);}
-  .btn-ghost:hover{background:var(--paper-dim);}
   .btn-dark{background:var(--ink); color:var(--paper);}
   .btn-dark:hover{background:var(--ink-2);}
-  .card{background:var(--paper-card); border:1px solid var(--hairline); border-radius:var(--radius-m); box-shadow:var(--shadow-1); transition:transform .2s ease, box-shadow .2s ease;}
-  .card.hoverable:hover{transform:translateY(-4px); box-shadow:var(--shadow-2);}
+  .card{background:var(--paper-card); border:1px solid var(--hairline); border-radius:var(--radius-m); box-shadow:var(--shadow-1); transition:translate .2s ease, scale .2s ease, box-shadow .2s ease;}
   /* Scroll-reveal is progressive enhancement: elements are fully visible by default
      (.reveal alone), so a page with JS disabled or slow never hides content.
      JS adds .pre on load, then .in on intersection — only then does the fade/slide apply. */
@@ -167,7 +163,8 @@
   @media(max-width:640px){.bd-row{grid-template-columns:1fr; gap:6px;}}
   .bd-label{font-size:13.5px; color:#E7DFD2; font-weight:600;}
   .bd-track{height:10px; background:rgba(255,255,255,.12); border-radius:999px; overflow:hidden;}
-  .bd-fill{height:100%; border-radius:999px; background:linear-gradient(90deg,var(--amber),var(--teal));}
+  .bd-fill{height:100%; border-radius:999px; background:linear-gradient(90deg,var(--amber),var(--teal)); transform-origin:left center;}
+
   .bd-val{font-size:13px; font-weight:800; color:#fff; text-align:right;}
   .stat-disclaimer{font-size:12px; color:#A89C8C; margin-top:28px; font-style:italic; max-width:640px;}
 
@@ -193,8 +190,8 @@
   .price-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:44px; align-items:stretch;}
   @media(max-width:900px){.price-grid{grid-template-columns:1fr;}}
   .price-card{padding:32px 28px; display:flex; flex-direction:column;}
-  .price-card.pro{border-color:var(--amber); box-shadow:0 20px 44px -16px rgba(255,107,53,.35); transform:translateY(-8px);}
-  @media(max-width:900px){.price-card.pro{transform:none;}}
+  .price-card.pro{border-color:var(--amber); box-shadow:0 20px 44px -16px rgba(255,107,53,.35); translate:0 -8px;}
+  @media(max-width:900px){.price-card.pro{translate:0 0;}}
   .price-name{font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin-bottom:6px;}
   .price-card.pro .price-name{color:var(--amber-dark);}
   .price-amt{font-size:34px; font-weight:800; color:var(--ink); margin-bottom:2px;}
@@ -273,3 +270,177 @@ footer.has-top-border{border-top:1px solid var(--hairline);}
 .tile.missing span{font-size:22px; font-weight:800; color:var(--muted);}
 footer.footer-minimal{padding:32px 0; border-top:1px solid var(--hairline); text-align:center; font-size:13px; color:var(--muted);}
 footer.footer-minimal .sbs-credit{margin-left:8px;}
+/* ——— Scroll-driven + micro motion (progressive enhancement) ——— */
+
+/* 1. Native scroll-driven reveal */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes reveal-in {
+      from { opacity: 0; transform: translateY(18px); }
+    }
+    .reveal {
+      animation: reveal-in 0.6s ease both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.pre, .reveal.pre.in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* 2. Stagger card groups */
+@media (prefers-reduced-motion: no-preference) {
+  .who-row > .who-card,
+  .grid-3 > .prob-card,
+  #features > .wrap > .feature,
+  .sec-grid > .sec-item,
+  .price-grid > .card {
+    --stagger: 0.08s;
+    animation-delay: calc(var(--sibling-index, 0) * var(--stagger));
+    animation-delay: calc(sibling-index() * var(--stagger));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .who-row > .who-card,
+  .grid-3 > .prob-card,
+  #features > .wrap > .feature,
+  .sec-grid > .sec-item,
+  .price-grid > .card {
+    animation-delay: 0s !important;
+  }
+}
+
+/* 3. Compare scrollytelling */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    .compare {
+      view-timeline: --compare-tl block;
+    }
+    @keyframes step-tired-in {
+      from { opacity: 0; translate: -12px 0; rotate: -1deg; }
+      to   { opacity: 1; translate: 0 0; rotate: 0deg; }
+    }
+    @keyframes step-clean-in {
+      from { opacity: 0; scale: 0.92; }
+      to   { opacity: 1; scale: 1; }
+    }
+    .compare-col.before .step-row {
+      animation: step-tired-in 0.5s ease both;
+      animation-timeline: --compare-tl;
+      animation-delay: calc(sibling-index() * 0.06s);
+      animation-range: entry 10% entry 55%;
+    }
+    .compare-col.after .step-row {
+      animation: step-clean-in 0.5s ease both;
+      animation-timeline: --compare-tl;
+      animation-delay: calc(sibling-index() * 0.1s);
+      animation-range: entry 25% entry 70%;
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .compare-col .step-row {
+    opacity: 1 !important;
+    translate: 0 0 !important;
+    scale: 1 !important;
+    rotate: 0deg !important;
+  }
+}
+
+/* 4. Stat bar fill */
+.bd-fill {
+  scale: 0 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    .bd-row { view-timeline: --bd-tl block; }
+    @keyframes bd-fill-in { to { scale: 1 1; } }
+    .bd-fill {
+      animation: bd-fill-in 0.7s ease-out both;
+      animation-timeline: --bd-tl;
+      animation-delay: calc(sibling-index() * 0.12s);
+      animation-range: entry 20% entry 80%;
+    }
+  }
+}
+@supports not ((animation-timeline: view()) and (animation-range: entry)) {
+  .bd-fill { scale: 1 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bd-fill { scale: 1 1 !important; animation: none !important; }
+}
+
+/* 6. Hero mock parallax */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    .hero { view-timeline: --hero-tl block; }
+    @keyframes hero-mock-parallax {
+      from { translate: 0 -24px; }
+      to   { translate: 0 0; }
+    }
+    .hero .mock {
+      animation: hero-mock-parallax linear both;
+      animation-timeline: --hero-tl;
+      animation-range: entry 0% entry 100%;
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero .mock { translate: 0 0 !important; animation: none !important; }
+}
+
+/* 7. Micro-interactions — individual transform properties */
+.btn, .card.hoverable, .price-card {
+  translate: 0 0;
+  scale: 1;
+}
+.price-card.pro {
+  translate: 0 -8px;
+}
+@media (max-width: 900px) {
+  .price-card.pro { translate: 0 0; }
+}
+
+.btn-primary:hover { background: var(--amber-dark); translate: 0 -1px; }
+.btn-primary:active { scale: 0.97; translate: 0 0; }
+
+.btn-ghost:hover { background: var(--paper-dim); }
+.btn-ghost:active { scale: 0.97; }
+
+.card.hoverable:hover { translate: 0 -4px; box-shadow: var(--shadow-2); }
+.card.hoverable:active { scale: 0.99; }
+
+.price-card.pro:hover { translate: 0 -6px; scale: 1.015; box-shadow: var(--shadow-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .card.hoverable, .price-card {
+    transition: none !important;
+  }
+}
+
+/* 8. Native View Transitions (index / terms / privacy / 404) */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root) {
+    animation: 0.32s ease-in both kollekta-page-out;
+  }
+  ::view-transition-new(root) {
+    animation: 0.32s ease-out both kollekta-page-in;
+  }
+
+  @keyframes kollekta-page-out {
+    to { opacity: 0; translate: 0 -8px; }
+  }
+  @keyframes kollekta-page-in {
+    from { opacity: 0; translate: 0 8px; }
+  }
+}

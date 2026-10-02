@@ -1,30 +1,108 @@
-/** Progressive-enhancement scroll reveal + sticky header (from rebrand design). */
-function initSiteMotion() {
+/** Progressive-enhancement motion: reveal fallback, stagger, count-up, plan select. */
+
+function supportsNativeScrollAnim(): boolean {
+  return (
+    typeof CSS !== 'undefined' &&
+    typeof CSS.supports === 'function' &&
+    CSS.supports('(animation-timeline: view()) and (animation-range: entry)')
+  );
+}
+
+function initHeaderScroll() {
   const header = document.getElementById('siteHeader');
-  if (header) {
-    const onScroll = () => {
-      header.classList.toggle('scrolled', window.scrollY > 10);
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+  if (!header) return;
+  const onScroll = () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+/** 1. Reveal — native CSS scroll-driven when supported; IO .pre/.in as fallback. */
+function initReveal() {
+  const revealEls = document.querySelectorAll('.reveal');
+  if (!revealEls.length) return;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) return;
+
+  if (supportsNativeScrollAnim()) return;
+
+  if (!('IntersectionObserver' in window)) return;
+
+  revealEls.forEach((el) => el.classList.add('pre'));
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          observer.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
+  );
+  revealEls.forEach((el) => observer.observe(el));
+}
+
+/** 2. Stagger fallback when sibling-index() is unsupported. */
+function initStaggerFallback() {
+  if (
+    typeof CSS !== 'undefined' &&
+    typeof CSS.supports === 'function' &&
+    CSS.supports('animation-delay: calc(sibling-index() * 1s)')
+  ) {
+    return;
   }
 
-  const revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && revealEls.length) {
-    revealEls.forEach((el) => el.classList.add('pre'));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('in');
-            observer.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
-    );
-    revealEls.forEach((el) => observer.observe(el));
+  const selectors = ['.who-row', '.grid-3', '#features > .wrap', '.sec-grid', '.price-grid'];
+  selectors.forEach((sel) => {
+    document.querySelectorAll(sel).forEach((parent) => {
+      Array.from(parent.children).forEach((el, i) => {
+        (el as HTMLElement).style.setProperty('--sibling-index', String(i));
+      });
+    });
+  });
+}
+
+/** 5. Count-up on #statNumber — plays once. */
+function initStatCountUp() {
+  const statEl = document.getElementById('statNumber');
+  if (!statEl) return;
+
+  const raw = (statEl.textContent || '100+').trim();
+  const match = raw.match(/(\d+)/);
+  const targetValue = match ? parseInt(match[1], 10) : 100;
+  const suffix = raw.replace(/^\d+/, '') || '+';
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    statEl.textContent = `${targetValue}${suffix}`;
+    return;
   }
+
+  let counted = false;
+  const statObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !counted) {
+          counted = true;
+          const start = performance.now();
+          const duration = 1400;
+          const tick = (now: number) => {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            statEl.textContent = `${Math.round(eased * targetValue)}${suffix}`;
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+          statObserver.unobserve(statEl);
+        }
+      });
+    },
+    { threshold: 0.4 },
+  );
+  statObserver.observe(statEl);
 }
 
 function selectPlan(plan: string) {
@@ -54,4 +132,7 @@ document.addEventListener('click', (event) => {
   }
 });
 
-initSiteMotion();
+initHeaderScroll();
+initReveal();
+initStaggerFallback();
+initStatCountUp();
