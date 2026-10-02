@@ -7,6 +7,9 @@ interface ImportMetaEnv {
   readonly SANITY_WRITE_TOKEN?: string;
   readonly SITE_URL?: string;
   readonly SITE_NAME?: string;
+  readonly RESEND_API_KEY?: string;
+  readonly ADMIN_NOTIFICATION_EMAIL?: string;
+  readonly RESEND_FROM_EMAIL?: string;
 }
 
 interface ImportMeta {

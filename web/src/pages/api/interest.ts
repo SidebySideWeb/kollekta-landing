@@ -2,6 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { writeClient } from '../../lib/sanity';
+import { sendInterestAdminEmail } from '../../lib/admin-notification-email';
 
 const emailOk = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
@@ -39,7 +40,7 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    await writeClient.create({
+    const doc = await writeClient.create({
       _type: 'formSubmission',
       formType: 'interest',
       companyName,
@@ -54,6 +55,11 @@ export const POST: APIRoute = async ({ request }) => {
       starred: false,
       submittedAt: new Date().toISOString(),
     });
+
+    await sendInterestAdminEmail(
+      { companyName, fullName, email, phone, plan, planUnsure },
+      doc._id,
+    );
 
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
