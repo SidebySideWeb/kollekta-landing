@@ -2,15 +2,14 @@ import {defineType, defineField} from 'sanity'
 
 export const homePage = defineType({
   name: 'homePage',
-  title: 'Marketing Landing',
+  title: 'Αρχική σελίδα',
   type: 'document',
   groups: [
     {name: 'hero', title: 'Hero'},
-    {name: 'problem', title: 'Πρόβλημα'},
     {name: 'audience', title: 'Για ποιον είναι'},
-    {name: 'solution', title: 'Λύση'},
+    {name: 'problem', title: 'Πρόβλημα'},
     {name: 'features', title: 'Λειτουργίες'},
-    {name: 'stats', title: 'Στατιστικό'},
+    {name: 'stats', title: 'Στατιστικά'},
     {name: 'brand', title: 'White-label'},
     {name: 'security', title: 'Ασφάλεια'},
     {name: 'pricing', title: 'Τιμές'},
@@ -19,17 +18,26 @@ export const homePage = defineType({
     {name: 'seo', title: 'SEO'},
   ],
   fields: [
-    defineField({name: 'heroBadge', title: 'Hero badge', type: 'string', group: 'hero'}),
-    defineField({name: 'heroTitle', title: 'Hero τίτλος', type: 'text', rows: 3, group: 'hero'}),
-    defineField({name: 'heroDescription', title: 'Hero περιγραφή', type: 'text', rows: 4, group: 'hero'}),
-    defineField({name: 'heroPrimaryCta', title: 'Primary CTA', type: 'string', group: 'hero'}),
-    defineField({name: 'heroSecondaryCta', title: 'Secondary CTA', type: 'string', group: 'hero'}),
-    defineField({name: 'heroTrustLine', title: 'Trust line', type: 'string', group: 'hero'}),
-    defineField({name: 'heroMockupDomain', title: 'Mockup domain', type: 'string', group: 'hero'}),
+    defineField({name: 'heroBadge', title: 'Eyebrow', type: 'string', group: 'hero'}),
+    defineField({name: 'heroTitle', title: 'Headline', type: 'text', rows: 3, group: 'hero'}),
+    defineField({name: 'heroDescription', title: 'Υπότιτλος', type: 'text', rows: 4, group: 'hero'}),
+    defineField({name: 'heroPrimaryCta', title: 'Κύριο CTA', type: 'string', group: 'hero'}),
+    defineField({name: 'heroSecondaryCta', title: 'Δευτερεύον CTA', type: 'string', group: 'hero'}),
+    defineField({name: 'heroTrustLine', title: 'Σημείωση εμπιστοσύνης', type: 'string', group: 'hero'}),
     defineField({name: 'heroMockupCollection', title: 'Mockup συλλογή', type: 'string', group: 'hero'}),
 
+    defineField({name: 'audienceEyebrow', title: 'Eyebrow', type: 'string', group: 'audience'}),
+    defineField({name: 'audienceTitle', title: 'Headline', type: 'text', rows: 2, group: 'audience'}),
+    defineField({
+      name: 'audienceCards',
+      title: 'Segments (πρώτο = lead dark card)',
+      type: 'array',
+      of: [{type: 'iconCard'}],
+      group: 'audience',
+    }),
+
     defineField({name: 'problemEyebrow', title: 'Eyebrow', type: 'string', group: 'problem'}),
-    defineField({name: 'problemTitle', title: 'Τίτλος', type: 'string', group: 'problem'}),
+    defineField({name: 'problemTitle', title: 'Headline', type: 'string', group: 'problem'}),
     defineField({
       name: 'problemCards',
       title: 'Κάρτες προβλήματος',
@@ -37,29 +45,27 @@ export const homePage = defineType({
       of: [{type: 'iconCard'}],
       group: 'problem',
     }),
-
-    defineField({name: 'audienceEyebrow', title: 'Eyebrow', type: 'string', group: 'audience'}),
-    defineField({name: 'audienceTitle', title: 'Τίτλος', type: 'text', rows: 2, group: 'audience'}),
+    defineField({name: 'beforeTitle', title: 'Τίτλος «Πριν»', type: 'string', group: 'problem'}),
     defineField({
-      name: 'audienceCards',
-      title: 'Κάρτες κοινού',
+      name: 'beforeSteps',
+      title: 'Βήματα «Πριν»',
       type: 'array',
-      of: [{type: 'iconCard'}],
-      group: 'audience',
+      of: [{type: 'string'}],
+      group: 'problem',
     }),
-
-    defineField({name: 'solutionEyebrow', title: 'Eyebrow', type: 'string', group: 'solution'}),
-    defineField({name: 'solutionTitle', title: 'Τίτλος', type: 'string', group: 'solution'}),
+    defineField({name: 'beforeFootnote', title: 'Υποσημείωση «Πριν»', type: 'string', group: 'problem'}),
+    defineField({name: 'afterTitle', title: 'Τίτλος «Μετά»', type: 'string', group: 'problem'}),
     defineField({
-      name: 'solutionSteps',
-      title: 'Βήματα',
+      name: 'afterSteps',
+      title: 'Βήματα «Μετά»',
       type: 'array',
-      of: [{type: 'stepItem'}],
-      group: 'solution',
+      of: [{type: 'string'}],
+      group: 'problem',
     }),
+    defineField({name: 'afterFootnote', title: 'Υποσημείωση «Μετά»', type: 'string', group: 'problem'}),
 
     defineField({name: 'featuresEyebrow', title: 'Eyebrow', type: 'string', group: 'features'}),
-    defineField({name: 'featuresTitle', title: 'Τίτλος', type: 'string', group: 'features'}),
+    defineField({name: 'featuresTitle', title: 'Headline', type: 'text', rows: 2, group: 'features'}),
     defineField({
       name: 'features',
       title: 'Λειτουργίες',
@@ -69,13 +75,39 @@ export const homePage = defineType({
     }),
 
     defineField({name: 'statEyebrow', title: 'Eyebrow', type: 'string', group: 'stats'}),
-    defineField({name: 'statValue', title: 'Αριθμός', type: 'string', group: 'stats'}),
-    defineField({name: 'statLabel', title: 'Ετικέτα', type: 'string', group: 'stats'}),
+    defineField({name: 'statLabel', title: 'Headline ενότητας', type: 'string', group: 'stats'}),
+    defineField({name: 'statValue', title: 'Μεγάλος αριθμός', type: 'string', group: 'stats'}),
+    defineField({
+      name: 'statBigNumberLabel',
+      title: 'Ετικέτα κάτω από τον αριθμό',
+      type: 'string',
+      group: 'stats',
+    }),
+    defineField({name: 'statMoneyValue', title: 'Αξία σε χρήμα', type: 'string', group: 'stats'}),
     defineField({name: 'statDescription', title: 'Περιγραφή', type: 'text', rows: 4, group: 'stats'}),
-    defineField({name: 'statDisclaimer', title: 'Disclaimer', type: 'text', rows: 2, group: 'stats'}),
+    defineField({
+      name: 'statBreakdown',
+      title: 'Ανάλυση ωρών',
+      type: 'array',
+      group: 'stats',
+      of: [
+        {
+          type: 'object',
+          name: 'statBreakdownRow',
+          fields: [
+            defineField({name: 'label', title: 'Ετικέτα', type: 'string'}),
+            defineField({name: 'hours', title: 'Ώρες', type: 'number'}),
+            defineField({name: 'hoursLabel', title: 'Εμφάνιση (π.χ. ~35ω)', type: 'string'}),
+            defineField({name: 'percentOfMax', title: 'Ποσοστό μπάρας (0-100)', type: 'number'}),
+          ],
+          preview: {select: {title: 'label', subtitle: 'hoursLabel'}},
+        },
+      ],
+    }),
+    defineField({name: 'statDisclaimer', title: 'Υποσημείωση', type: 'text', rows: 2, group: 'stats'}),
 
     defineField({name: 'whiteLabelEyebrow', title: 'Eyebrow', type: 'string', group: 'brand'}),
-    defineField({name: 'whiteLabelTitle', title: 'Τίτλος', type: 'string', group: 'brand'}),
+    defineField({name: 'whiteLabelTitle', title: 'Headline', type: 'string', group: 'brand'}),
     defineField({
       name: 'whiteLabelDescription',
       title: 'Περιγραφή',
@@ -85,7 +117,7 @@ export const homePage = defineType({
     }),
 
     defineField({name: 'securityEyebrow', title: 'Eyebrow', type: 'string', group: 'security'}),
-    defineField({name: 'securityTitle', title: 'Τίτλος', type: 'string', group: 'security'}),
+    defineField({name: 'securityTitle', title: 'Headline', type: 'string', group: 'security'}),
     defineField({
       name: 'securityItems',
       title: 'Σημεία ασφαλείας',
@@ -95,7 +127,7 @@ export const homePage = defineType({
     }),
 
     defineField({name: 'pricingEyebrow', title: 'Eyebrow', type: 'string', group: 'pricing'}),
-    defineField({name: 'pricingTitle', title: 'Τίτλος', type: 'string', group: 'pricing'}),
+    defineField({name: 'pricingTitle', title: 'Headline', type: 'string', group: 'pricing'}),
     defineField({
       name: 'pricingPlans',
       title: 'Πακέτα',
@@ -103,15 +135,9 @@ export const homePage = defineType({
       of: [{type: 'pricingPlan'}],
       group: 'pricing',
     }),
-    defineField({
-      name: 'pricingOfferBanner',
-      title: 'Banner προσφοράς',
-      type: 'string',
-      group: 'pricing',
-    }),
 
     defineField({name: 'foundingEyebrow', title: 'Eyebrow', type: 'string', group: 'founding'}),
-    defineField({name: 'foundingTitle', title: 'Τίτλος', type: 'string', group: 'founding'}),
+    defineField({name: 'foundingTitle', title: 'Headline', type: 'string', group: 'founding'}),
     defineField({
       name: 'foundingDescription',
       title: 'Περιγραφή',
@@ -120,28 +146,44 @@ export const homePage = defineType({
       group: 'founding',
     }),
 
-    defineField({name: 'contactTitle', title: 'Τίτλος φόρμας', type: 'string', group: 'contact'}),
+    defineField({name: 'contactTitle', title: 'Headline', type: 'string', group: 'contact'}),
     defineField({
       name: 'contactDescription',
-      title: 'Περιγραφή φόρμας',
+      title: 'Περιγραφή',
       type: 'text',
       rows: 3,
       group: 'contact',
     }),
     defineField({
-      name: 'contactSuccessTitle',
-      title: 'Τίτλος επιτυχίας',
+      name: 'contactConsentText',
+      title: 'Κείμενο συναίνεσης',
+      type: 'text',
+      rows: 2,
+      group: 'contact',
+    }),
+    defineField({
+      name: 'contactSuccessMessage',
+      title: 'Μήνυμα επιτυχίας',
       type: 'string',
       group: 'contact',
     }),
     defineField({
-      name: 'contactSuccessDescription',
-      title: 'Περιγραφή επιτυχίας',
-      type: 'text',
-      rows: 3,
+      name: 'contactSuccessTitle',
+      title: 'Τίτλος επιτυχίας (παλιό)',
+      type: 'string',
       group: 'contact',
+      hidden: true,
+    }),
+    defineField({
+      name: 'contactSuccessDescription',
+      title: 'Περιγραφή επιτυχίας (παλιό)',
+      type: 'text',
+      rows: 2,
+      group: 'contact',
+      hidden: true,
     }),
 
     defineField({name: 'seo', title: 'SEO', type: 'seo', group: 'seo'}),
   ],
+  preview: {prepare: () => ({title: 'Αρχική σελίδα'})},
 })

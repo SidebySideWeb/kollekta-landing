@@ -49,6 +49,7 @@ export const POST: APIRoute = async ({ request }) => {
       email,
       phone,
       consent,
+      status: 'new',
       read: false,
       starred: false,
       submittedAt: new Date().toISOString(),

@@ -4,7 +4,7 @@ const singletonTypes = ['siteSettings', 'homePage', 'notFoundPage']
 
 const singletonTitles: Record<string, string> = {
   siteSettings: 'Ρυθμίσεις Site',
-  homePage: 'Marketing Landing',
+  homePage: 'Αρχική σελίδα',
   notFoundPage: 'Σελίδα 404',
 }
 

@@ -29,7 +29,14 @@ export interface FeatureItem {
   badge?: string;
   title?: string;
   description?: string;
-  visual?: 'tags' | 'orders' | 'auth' | 'resize' | 'none';
+  visual?: 'tags' | 'orders' | 'auth' | 'resize' | 'time' | 'none';
+}
+
+export interface StatBreakdownRow {
+  label?: string;
+  hours?: number;
+  hoursLabel?: string;
+  percentOfMax?: number;
 }
 
 export interface PricingFeature {
@@ -118,6 +125,12 @@ export interface HomePage {
   problemEyebrow?: string;
   problemTitle?: string;
   problemCards?: IconCard[];
+  beforeTitle?: string;
+  beforeSteps?: string[];
+  beforeFootnote?: string;
+  afterTitle?: string;
+  afterSteps?: string[];
+  afterFootnote?: string;
   audienceEyebrow?: string;
   audienceTitle?: string;
   audienceCards?: IconCard[];
@@ -130,7 +143,10 @@ export interface HomePage {
   statEyebrow?: string;
   statValue?: string;
   statLabel?: string;
+  statBigNumberLabel?: string;
+  statMoneyValue?: string;
   statDescription?: string;
+  statBreakdown?: StatBreakdownRow[];
   statDisclaimer?: string;
   whiteLabelEyebrow?: string;
   whiteLabelTitle?: string;
@@ -147,6 +163,8 @@ export interface HomePage {
   foundingDescription?: string;
   contactTitle?: string;
   contactDescription?: string;
+  contactConsentText?: string;
+  contactSuccessMessage?: string;
   contactSuccessTitle?: string;
   contactSuccessDescription?: string;
   seo?: Seo;
@@ -154,6 +172,7 @@ export interface HomePage {
 
 export interface NotFoundPage {
   badge?: string;
+  codeLabel?: string;
   title?: string;
   description?: string;
   statusTag?: string;

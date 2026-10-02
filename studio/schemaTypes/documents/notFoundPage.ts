@@ -10,6 +10,7 @@ export const notFoundPage = defineType({
   ],
   fields: [
     defineField({name: 'badge', title: 'Badge', type: 'string', group: 'content'}),
+    defineField({name: 'codeLabel', title: 'Κωδικός (π.χ. Σφάλμα 404)', type: 'string', group: 'content'}),
     defineField({name: 'title', title: 'Τίτλος', type: 'string', group: 'content'}),
     defineField({name: 'description', title: 'Περιγραφή', type: 'text', rows: 4, group: 'content'}),
     defineField({name: 'statusTag', title: 'Status tag', type: 'string', group: 'content'}),

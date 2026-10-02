@@ -6,41 +6,44 @@ interface Props {
 }
 
 const { home } = Astro.props;
+const rows = home.statBreakdown || [];
 ---
 
-<section class="w-full py-20 md:py-28 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50/70 via-studio-mist to-white border-y border-slate-hairline">
-  <div class="reveal max-w-4xl mx-auto text-center flex flex-col items-center">
-    {
-      home.statEyebrow && (
-        <span class="text-xs font-bold text-cobalt-blue uppercase tracking-widest block mb-4">
-          {home.statEyebrow}
-        </span>
-      )
-    }
-
-    <div
-      class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-cobalt-blue tracking-tight leading-none mb-6 select-none drop-shadow-sm"
-      data-count-up={home.statValue ?? '100+'}
-    >
-      0
+<section id="how" style="background:var(--paper-dim);">
+  <div class="wrap">
+    {home.statEyebrow && <div class="eyebrow reveal">{home.statEyebrow}</div>}
+    {home.statLabel && <h2 class="h2 reveal">{home.statLabel}</h2>}
+    <div class="stat-section reveal">
+      <div class="stat-big" id="statNumber">{home.statValue || '100+'}</div>
+      {
+        home.statBigNumberLabel && (
+          <div style="font-size:19px; font-weight:700; margin-top:4px;">{home.statBigNumberLabel}</div>
+        )
+      }
+      {home.statMoneyValue && <div class="stat-money">{home.statMoneyValue}</div>}
+      {
+        home.statDescription && (
+          <p style="color:#E7DFD2; max-width:620px; margin-top:20px; font-size:15px;">
+            {home.statDescription}
+          </p>
+        )
+      }
+      {
+        rows.length > 0 && (
+          <div class="breakdown">
+            {rows.map((row) => (
+              <div class="bd-row">
+                <div class="bd-label">{row.label}</div>
+                <div class="bd-track">
+                  <div class="bd-fill" style={`width:${row.percentOfMax ?? 0}%;`} />
+                </div>
+                <div class="bd-val">{row.hoursLabel || (row.hours != null ? `~${row.hours}ω` : '')}</div>
+              </div>
+            ))}
+          </div>
+        )
+      }
+      {home.statDisclaimer && <div class="stat-disclaimer">{home.statDisclaimer}</div>}
     </div>
-
-    <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-deep-slate mb-6">
-      {home.statLabel ?? ''}
-    </div>
-
-    {
-      home.statDescription && (
-        <p class="text-base sm:text-lg text-body-ink leading-relaxed max-w-2xl mb-8">
-          {home.statDescription}
-        </p>
-      )
-    }
-
-    {
-      home.statDisclaimer && (
-        <p class="text-xs text-muted-caption italic max-w-xl">{home.statDisclaimer}</p>
-      )
-    }
   </div>
 </section>

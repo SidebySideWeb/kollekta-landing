@@ -47,9 +47,9 @@ export const iconCard = defineType({
   fields: [
     defineField({
       name: 'icon',
-      title: 'Εικονίδιο (Material Symbols)',
+      title: 'Εικονίδιο',
       type: 'string',
-      description: 'π.χ. link_off, shield, check_circle',
+      description: 'Emoji ή σύντομο κείμενο (π.χ. 👗, 🔐)',
     }),
     defineField({name: 'title', title: 'Τίτλος', type: 'string'}),
     defineField({name: 'description', title: 'Περιγραφή', type: 'text', rows: 3}),
@@ -97,6 +97,7 @@ export const featureItem = defineType({
           {title: 'Order permission', value: 'orders'},
           {title: 'Quick auth', value: 'auth'},
           {title: 'Resizing', value: 'resize'},
+          {title: 'Time badge 24/7', value: 'time'},
           {title: 'Κανένα', value: 'none'},
         ],
       },

@@ -20,6 +20,21 @@ export const formSubmission = defineType({
     defineField({name: 'email', title: 'Email', type: 'string', readOnly: true}),
     defineField({name: 'phone', title: 'Τηλέφωνο', type: 'string', readOnly: true}),
     defineField({name: 'consent', title: 'Συναίνεση', type: 'boolean', readOnly: true}),
+    defineField({
+      name: 'status',
+      title: 'Κατάσταση',
+      type: 'string',
+      options: {
+        list: [
+          {title: 'Νέο', value: 'new'},
+          {title: 'Σε επικοινωνία', value: 'in_progress'},
+          {title: 'Έγινε πελάτης', value: 'converted'},
+          {title: 'Δεν προχώρησε', value: 'closed'},
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'new',
+    }),
     defineField({name: 'read', title: 'Διαβάστηκε', type: 'boolean', initialValue: false}),
     defineField({name: 'starred', title: 'Επισημασμένο', type: 'boolean', initialValue: false}),
     defineField({name: 'submittedAt', title: 'Ημερομηνία', type: 'datetime', readOnly: true}),

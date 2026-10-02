@@ -22,13 +22,16 @@ const homePageFields = `{
   heroTrustLine, heroMockupDomain, heroMockupCollection,
   problemEyebrow, problemTitle,
   problemCards[]{ icon, title, description, footer, footerTone },
+  beforeTitle, beforeSteps, beforeFootnote, afterTitle, afterSteps, afterFootnote,
   audienceEyebrow, audienceTitle,
-  audienceCards[]{ icon, title, description },
+  audienceCards[]{ icon, title, description, footer },
   solutionEyebrow, solutionTitle,
   solutionSteps[]{ number, title, description },
   featuresEyebrow, featuresTitle,
   features[]{ code, category, badge, title, description, visual },
-  statEyebrow, statValue, statLabel, statDescription, statDisclaimer,
+  statEyebrow, statValue, statLabel, statBigNumberLabel, statMoneyValue,
+  statDescription, statDisclaimer,
+  statBreakdown[]{ label, hours, hoursLabel, percentOfMax },
   whiteLabelEyebrow, whiteLabelTitle, whiteLabelDescription,
   securityEyebrow, securityTitle,
   securityItems[]{ icon, title, description },
@@ -40,12 +43,13 @@ const homePageFields = `{
   },
   pricingOfferBanner,
   foundingEyebrow, foundingTitle, foundingDescription,
-  contactTitle, contactDescription, contactSuccessTitle, contactSuccessDescription,
+  contactTitle, contactDescription, contactConsentText,
+  contactSuccessMessage, contactSuccessTitle, contactSuccessDescription,
   seo{ title, description, noIndex }
 }`;
 
 const notFoundFields = `{
-  badge, title, description, statusTag, errorCode,
+  badge, codeLabel, title, description, statusTag, errorCode,
   primaryCtaLabel, primaryCtaHref, secondaryCtaLabel, secondaryCtaHref,
   helpLinks[]{ icon, title, description, href },
   seo{ title, description, noIndex }
