@@ -1,11 +1,13 @@
 /** Progressive-enhancement motion: reveal fallback, stagger, count-up, plan select. */
 
 function supportsNativeScrollAnim(): boolean {
-  return (
-    typeof CSS !== 'undefined' &&
-    typeof CSS.supports === 'function' &&
-    CSS.supports('(animation-timeline: view()) and (animation-range: entry)')
-  );
+  if (typeof CSS === 'undefined' || typeof CSS.supports !== 'function') return false;
+  // Prefer the two-arg form — the combined "(…)" string is unreliable across engines.
+  try {
+    return CSS.supports('animation-timeline', 'view()');
+  } catch {
+    return false;
+  }
 }
 
 function initHeaderScroll() {
@@ -47,20 +49,31 @@ function initReveal() {
 
 /** 2. Stagger fallback when sibling-index() is unsupported. */
 function initStaggerFallback() {
-  if (
-    typeof CSS !== 'undefined' &&
-    typeof CSS.supports === 'function' &&
-    CSS.supports('animation-delay: calc(sibling-index() * 1s)')
-  ) {
-    return;
+  let hasSiblingIndex = false;
+  try {
+    hasSiblingIndex =
+      typeof CSS !== 'undefined' &&
+      typeof CSS.supports === 'function' &&
+      CSS.supports('animation-delay', 'calc(sibling-index() * 1s)');
+  } catch {
+    hasSiblingIndex = false;
   }
+  if (hasSiblingIndex) return;
 
-  const selectors = ['.who-row', '.grid-3', '#features > .wrap', '.sec-grid', '.price-grid'];
+  const selectors = ['.who-row', '.grid-3', '#features > .wrap', '.sec-grid', '.price-grid', '.compare-col'];
   selectors.forEach((sel) => {
     document.querySelectorAll(sel).forEach((parent) => {
       Array.from(parent.children).forEach((el, i) => {
         (el as HTMLElement).style.setProperty('--sibling-index', String(i));
       });
+    });
+  });
+
+  document.querySelectorAll('.breakdown').forEach((parent) => {
+    Array.from(parent.children).forEach((el, i) => {
+      const fill = el.querySelector('.bd-fill') as HTMLElement | null;
+      if (fill) fill.style.setProperty('--sibling-index', String(i));
+      (el as HTMLElement).style.setProperty('--sibling-index', String(i));
     });
   });
 }
